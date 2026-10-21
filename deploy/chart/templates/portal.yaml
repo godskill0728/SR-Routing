@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-portal
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app: {{ .Release.Name }}-portal}
+  template:
+    metadata:
+      labels: {app: {{ .Release.Name }}-portal}
+    spec:
+      automountServiceAccountToken: false
+      containers:
+        - name: portal
+          image: {{ .Values.portal.image | quote }}
+          ports:
+            - {name: http, containerPort: 8080}
+          env:
+            - {name: HOST, value: "0.0.0.0"}
+            - {name: ENABLE_AMX_CONTROL, value: "false"}
+            {{- range $mode := list "on" "off" }}
+            - name: ENVOY_URL_{{ $mode | upper }}
+              value: http://{{ $.Release.Name }}-{{ $mode }}:8899
+            - name: ROUTER_HEALTH_URL_{{ $mode | upper }}
+              value: http://{{ $.Release.Name }}-{{ $mode }}:8080/health
+            - name: EVAL_URL_{{ $mode | upper }}
+              value: http://{{ $.Release.Name }}-{{ $mode }}:8080/api/v1/eval
+            {{- end }}
+            - {name: JAEGER_TRACE_URL, value: {{ .Values.stack.jaegerTraceURL | quote }}}
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 65532
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            capabilities: {drop: [ALL]}
+          resources:
+            requests: {cpu: 100m, memory: 128Mi}
+            limits: {cpu: "2", memory: 512Mi}
+          readinessProbe:
+            httpGet: {path: /healthz, port: http}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-portal
+spec:
+  type: {{ .Values.portal.serviceType }}
+  selector: {app: {{ .Release.Name }}-portal}
+  ports:
+    - name: http
+      port: 8080
+      targetPort: http
+      {{- if eq .Values.portal.serviceType "NodePort" }}
+      nodePort: {{ .Values.portal.nodePort }}
+      {{- end }}

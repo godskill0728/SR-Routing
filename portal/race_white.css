@@ -1,0 +1,48 @@
+/* Scoped presentation override; request states, layout and timing are unchanged. */
+.race-stage {
+  --rbg: #ffffff;
+  --rline: #dce3ec;
+  --rtext: #172b43;
+  --rmuted: #52647a;
+  --off: #b45309;
+  --on: #047857;
+  background: #ffffff;
+  border-color: var(--rline);
+  box-shadow: 0 12px 36px #192e4610;
+  color-scheme: light;
+}
+.race-stage .race-kicker { color: #526b8c; }
+.race-stage .race-side,
+.race-stage .race-plot { background: #ffffff; }
+.race-stage .race-clock { background: #f8fafc; }
+.race-stage .race-state {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  color: #475569;
+}
+.race-stage .race-meter { background: #e2e8f0; }
+.race-stage .race-meter > div { background: #16a36b; }
+.race-stage .race-cell { background: #e2e8f0; border-color: #c5cfdb; }
+.race-stage .race-cell[data-state=ok] { background: #22c584; border-color: #169b68; }
+.race-stage .race-cell[data-state=running] { background: #fbbf24; border-color: #c58a08; }
+.race-stage .race-cell[data-state=error] { background: #ef6475; border-color: #d53f53; }
+.race-stage .race-cell:focus-visible { outline-color: #2563eb; }
+.race-stage .race-chart text { fill: var(--rmuted); }
+.race-stage .race-chart .gridline { stroke: #dce3ec; }
+.race-stage .race-note {
+  background: #f8fafc;
+  border-color: var(--rline);
+  color: #475569;
+}
+.race-stage .race-key { background: #e2e8f0; border: 1px solid #c5cfdb; }
+.race-stage .race-key.running { background: #fbbf24; border-color: #c58a08; }
+.race-stage .race-key.ok { background: #22c584; border-color: #169b68; }
+.race-stage .race-key.error { background: #ef6475; border-color: #d53f53; }
+.race-stage .race-actions button {
+  background: #ffffff;
+  border-color: #b9c7d8;
+  color: #334e70;
+}
+.race-stage .race-actions button:hover { background: #eef4fa; }
+.race-stage .race-meta { background: #edf3f9; color: #3e5878; }
+.race-stage:fullscreen { background: #ffffff; }

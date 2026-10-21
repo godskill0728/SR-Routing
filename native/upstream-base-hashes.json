@@ -1,0 +1,12 @@
+{
+  "upstream": "https://github.com/vllm-project/semantic-router",
+  "version_label": "v0.3.0",
+  "archive_sha256": "24ce6fc8425c1ca9b8292d0505138f58de370e1bae377dbaba13ad84fa2223c8",
+  "base_files": {
+    "src/semantic-router/pkg/classification/classifier_option_rules.go": "3fe804ea70b2796793cd6e554d662b0e697994d05dfbfb1d79d3979cc2c06b50",
+    "src/semantic-router/pkg/classification/complexity_candidate_embeddings.go": "e7fe64954121dbddc744edca4fc14076ddfb4d85383742168036b35d15a50ee0",
+    "src/semantic-router/pkg/classification/complexity_query_embeddings.go": "b55b002489b9bccdd15183916ece188b7d629bb1ea8df1f129303bfbe3f5fcf4",
+    "src/semantic-router/pkg/classification/openvino_backend_cgo.go": "7551d127e8d403e79d9b2a1d2939393038ff096dc842241a132fb7a852d2e7a9",
+    "openvino-binding/cpp/src/embeddings/embedding_generator.cpp": "439f9c45b04b304d22a2799f7817032f8d47fe773dc02f1e03453a3e31ae1b06"
+  }
+}

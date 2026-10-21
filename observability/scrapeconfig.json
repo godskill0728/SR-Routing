@@ -1,0 +1,48 @@
+{
+  "apiVersion": "monitoring.coreos.com/v1alpha1",
+  "kind": "ScrapeConfig",
+  "metadata": {
+    "name": "sr-router-operations-v1",
+    "namespace": "default",
+    "labels": {
+      "app.kubernetes.io/part-of": "sr-router-operations",
+      "release": "example-prometheus"
+    }
+  },
+  "spec": {
+    "metricsPath": "/metrics",
+    "scrapeInterval": "15s",
+    "scrapeTimeout": "8s",
+    "metricRelabelings": [
+      {
+        "action": "keep",
+        "sourceLabels": [
+          "__name__"
+        ],
+        "regex": "llm_(model_requests_total|request_errors_total|decision_(evaluation_total|match_total)|signal_extraction_total|model_(prompt_tokens_total|completion_tokens_total)|(model_routing_latency|signal_extraction_latency|decision_evaluation_latency|model_completion_latency|model_ttft)_seconds_(bucket|sum|count))|process_(cpu_seconds_total|resident_memory_bytes|start_time_seconds)|go_goroutines"
+      }
+    ],
+    "staticConfigs": [
+      {
+        "targets": [
+          "sr-demo-on:9190"
+        ],
+        "labels": {
+          "sr_dashboard": "router-operations-v1",
+          "amx_mode": "on",
+          "component": "semantic-router"
+        }
+      },
+      {
+        "targets": [
+          "sr-demo-off:9190"
+        ],
+        "labels": {
+          "sr_dashboard": "router-operations-v1",
+          "amx_mode": "off",
+          "component": "semantic-router"
+        }
+      }
+    ]
+  }
+}

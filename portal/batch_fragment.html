@@ -1,0 +1,38 @@
+<style>
+[hidden]{display:none!important}.modebar{display:flex;gap:10px;margin:0 0 22px;flex-wrap:wrap}.modebar button{background:#fff;color:#315079;border:1px solid #c9d6e5}.modebar button[aria-pressed=true]{background:#183e83;color:white;border-color:#183e83}.batch-head{display:flex;justify-content:space-between;gap:15px;align-items:center;flex-wrap:wrap}.batch-head h2{margin:0;font-size:23px}.batch-chip{background:#e4f5ee;color:#067259;padding:5px 12px;border-radius:20px;font-weight:750;font-size:12px}.batch-flow{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}.batch-flow span{background:#eff4fb;border-radius:7px;padding:7px 11px;font-size:13px}.ack{display:flex;gap:10px;align-items:flex-start;background:#fff9e9;border:1px solid #ead9a9;border-radius:10px;padding:13px;margin:16px 0;font-size:13px;font-weight:400}.ack input{margin-top:5px;flex-shrink:0}.batch-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.batch-actions label{font-size:13px}.batch-actions button:first-of-type{margin-left:auto}.batch-progress{width:100%;height:13px;accent-color:#245bdd;margin-top:18px}.batch-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:20px 0}.batch-cards>div{border:1px solid var(--line);border-radius:14px;padding:18px;background:white}.batch-number{font-size:32px;font-weight:750;letter-spacing:-1px;color:#204e97;overflow-wrap:anywhere}.batch-number small{font-size:14px}.batch-table-wrap{overflow-x:auto}.batch-table{width:100%;border-collapse:collapse;white-space:nowrap;font-size:13px}.batch-table td,.batch-table th{padding:11px 13px;border-bottom:1px solid var(--line);text-align:left}.batch-table th{color:var(--muted);font-size:12px}.batch-table tr:last-child td{border-bottom:0}.batch-table td code{font-size:11px}.batch-section{padding:20px;margin:18px 0;background:white;border:1px solid var(--line);border-radius:16px}.batch-section h3{font-size:16px;margin:0 0 12px}.batch-downloads{display:flex;gap:10px;flex-wrap:wrap}.batch-downloads button{padding:7px 12px;font-size:12px}.batch-small{font-size:12px;color:var(--muted);overflow-wrap:anywhere}.batch-warning{font-size:13px;color:#8b5a08}.batch-bars{display:grid;gap:12px;margin:14px 0}.batch-bar{display:flex;align-items:center;gap:12px;font-size:12px}.batch-bar>span{width:35px}.bar-track{flex:1;background:#edf2f8;border-radius:5px;height:14px;overflow:hidden}.bar-fill{width:0;height:100%;background:#087c65;transition:width .25s}.bar-fill.off{background:#245bdd}.batch-bar b{min-width:85px;font-variant-numeric:tabular-nums}@media(max-width:760px){.batch-cards{grid-template-columns:1fr}.batch-actions button:first-of-type{margin-left:0}.batch-actions button{flex:1}.batch-head h2{font-size:21px}}
+</style>
+<style>@media(max-width:760px){.batch-actions button{flex-basis:100%}.batch-actions select{flex:1}}</style>
+<div class="modebar" aria-label="比較模式"><button type="button" id="show-batch" aria-pressed="true">100 題 · SR-only 配對測試</button><button type="button" id="show-single" aria-pressed="false">單題 · 完整 LLM 回答</button></div>
+<section id="batch-view">
+<div class="composer">
+<div class="batch-head"><h2>同一份題庫，逐題配對比較</h2><span class="batch-chip">CPU / SR-only · 不呼叫 GPU</span></div>
+<p class="muted">使用原本的 100 題中英題庫，先暖機、再重複配對。以 Complexity 分類耗時為主，避免 LLM 生成時間蓋過 CPU 差異。</p>
+<div class="batch-flow"><span>① 16 題 × 兩側暖機</span><span>② 每輪同樣 100 題</span><span>③ ON→OFF / OFF→ON 交替</span><span>④ 一次一筆 · 不重試</span></div>
+<p id="batch-corpus" class="batch-small">正在驗證題庫…（不發送評估請求）</p>
+<p class="batch-small"><a href="/reports/corpus/" target="_blank" rel="noopener">查看原始題庫 ↗</a> · 計量結果不是以前報告的重播；只有按下開始才產生新測量。</p>
+<label class="ack"><input type="checkbox" id="batch-ack"><span>我已確認此時可以對兩組 SR 施加測試負載，且不會干擾其他實驗。此頁不會預留節點、驗證綁核／執行緒配置相同或確認 AMX 指令執行；結果先視為目前兩組服務的描述性比較。</span></label>
+<div class="batch-actions"><label for="batch-rounds">正式輪次</label><select id="batch-rounds"><option value="1">1 輪 · 200 筆</option><option value="3" selected>3 輪 · 600 筆</option><option value="5">5 輪 · 1000 筆</option></select><button id="batch-start" type="button" disabled>開始 100 題配對測試</button><button id="batch-stop" type="button" class="secondary" disabled>停止批次</button></div>
+<p id="batch-budget" class="batch-small">暖機 32 筆＋正式 600 筆＝最多 632 筆 SR-only 請求；並行數 C=1。</p>
+<progress class="batch-progress" id="batch-progress" value="0" max="632" aria-label="批次測試進度"></progress>
+<p id="batch-status" role="status" aria-live="polite">待命。開啟頁面、切換模式與輪次都不會啟動測試。</p>
+<p id="batch-current" class="batch-small"></p>
+</div>
+<div class="batch-cards">
+<div><div class="hint">Complexity · 配對樣本均值比 OFF / ON</div><div id="batch-ratio" class="batch-number">—</div><div class="hint">只含兩側皆成功的同題同輪配對；不是已證實的 AMX 因果倍率。</div></div>
+<div><div class="hint">成功配對 / 預定配對</div><div id="batch-pairs" class="batch-number">0 / 300</div><div id="batch-missing" class="hint">失敗／不完整：0 · 未嘗試：300</div></div>
+<div><div class="hint">分類結果一致率 · 成功配對</div><div id="batch-agreement" class="batch-number">—</div><div id="batch-model-agreement" class="hint">決策／模型一致率尚無資料；題庫預設難度不是正確答案標籤。</div></div>
+</div>
+<div class="batch-section"><h3>Complexity 分類耗時 · 平均秒數</h3><div class="batch-bars"><div class="batch-bar"><span>ON</span><div class="bar-track"><div class="bar-fill" id="batch-bar-on"></div></div><b id="batch-bar-on-text">—</b></div><div class="batch-bar"><span>OFF</span><div class="bar-track"><div class="bar-fill off" id="batch-bar-off"></div></div><b id="batch-bar-off-text">—</b></div></div><p class="hint">長條從 0 起，兩側共用尺度。各側成功樣本分布與配對比值的樣本集合可能不同；失敗不填 0。</p>
+<div class="batch-table-wrap"><table class="batch-table"><thead><tr><th>指標 / 模式</th><th>有效 n</th><th>平均</th><th>P50</th><th>P95</th><th>最小 – 最大</th></tr></thead><tbody id="batch-stat-rows"></tbody></table></div></div>
+<div class="batch-section"><h3>完整性與逐輪波動</h3><p id="batch-counts" class="batch-small">尚未執行。暖機不計入耗時統計；失敗與未執行請求分開保留。</p><p id="batch-paired-distribution" class="batch-small"></p><div class="batch-table-wrap"><table class="batch-table"><thead><tr><th>輪次</th><th>成功配對</th><th>Complexity 均值比 OFF / ON</th></tr></thead><tbody id="batch-round-rows"></tbody></table></div><p id="batch-result-warning" class="batch-warning">結果只代表本次題庫、配置與負載；不自動宣稱統計顯著性或純 embedding kernel 加速。</p></div>
+<div class="batch-section"><div class="batch-head"><h3>逐筆記錄 <span class="hint">最近 12 筆；完整資料可下載</span></h3><div class="batch-downloads"><button id="batch-json" class="secondary" disabled>下載完整 JSON</button><button id="batch-csv" class="secondary" disabled>下載逐筆 CSV</button></div></div><p id="batch-run-id" class="batch-small">尚無 run ID</p><div class="batch-table-wrap"><table class="batch-table"><thead><tr><th>階段 / 輪</th><th>題目 ID</th><th>模式</th><th>結果</th><th>Complexity</th><th>HTTP</th><th>決策</th></tr></thead><tbody id="batch-recent"></tbody></table></div></div>
+<section class="notes"><h2>測量範圍與保護措施</h2><ul>
+<li><strong>Complexity 分類耗時</strong>直接取自該次 eval 回應的 <code>metrics.complexity.execution_time_ms</code>，包含 complexity classifier 內部工作，不是純 AMX 指令或 embedding kernel 計時。</li>
+<li><strong>SR-only HTTP 耗時</strong>從 Portal 發出 eval 到讀完回應，以 monotonic clock 計量，不含 JSON 解析；包含網路與 SR 處理，但不含 LiteLLM／GPU。與單題頁的 trace 路由區間是不同指標。</li>
+<li>使用原題庫 16 題暖機，各側一次；暖機結束後，正式每輪完整 100 題。同輪兩側題序相同，逐題交替先後，下一輪反轉起始側；題序 seed 與實際順序保留於 JSON。</li>
+<li>一次只跑一個批次，且批次期間阻止新的單題比較請求；這不阻擋原本聊天或其他叢集工作，不構成主機隔離。沒有重建 Pod、切換 AMX 或調整 CPU 配置。</li>
+<li>暖機任一筆失敗即停止；正式連續三筆失敗即停止。其餘失敗保留，不自動重試；沒有資料、HTTP 失敗、缺少有效計時均不填成 0 秒。</li>
+<li>停止會在目前一筆結束後停止排程；socket timeout 10 秒，整批經過 20 分鐘後不再排程新請求。頁面未回報心跳超過 45 秒也會停止排程，請保持頁面開啟。瀏覽器背景節流可能導致此安全停止；不保證中止 SR 內已執行的工作。</li>
+<li>資料暫存在 Portal 記憶體，保留最多一小時；Portal 重啟可能遺失。頁面刷新會嘗試接回同一 run，不會自動重跑；請下載 JSON／CSV 保存正式記錄。部分結果可下載但不冒充完整批次。</li>
+</ul></section>
+</section>

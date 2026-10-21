@@ -1,0 +1,6 @@
+apiVersion: v2
+name: sr-routing-demo
+description: Curated SR demo portal and optional ON/OFF OpenVINO routing stack
+type: application
+version: 0.1.0
+appVersion: "2026.10.20"

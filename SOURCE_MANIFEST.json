@@ -1,0 +1,1335 @@
+{
+  "captured_at": "2026-10-21T05:51:00Z",
+  "source_root_label": "vLLM_Semantic_Router_System",
+  "live_portal": {
+    "deployment": "sr-portal",
+    "namespace": "vllm-semantic-router-system",
+    "uid": "26c1245a-929c-4e24-acf0-7ea0f9ea833e",
+    "entrypoint": [
+      "python",
+      "/app/fill_release.py"
+    ],
+    "configmap": "sr-portal-profile-src-c86b84a6706b"
+  },
+  "entries": [
+    {
+      "path": ".dockerignore",
+      "source": {
+        "kind": "authored portable export support"
+      },
+      "source_sha256": null,
+      "sha256": "1e37fb74784352a7be3fde38c42977b80e9b10af744a11d93daab3e1620dce4c",
+      "bytes": 84,
+      "sanitized": false
+    },
+    {
+      "path": ".env.example",
+      "source": {
+        "kind": "authored portable export support"
+      },
+      "source_sha256": null,
+      "sha256": "b401d299d8bb2faddad74b801d1f0b9bbd189737513e7174587db1a60710a2be",
+      "bytes": 741,
+      "sanitized": false
+    },
+    {
+      "path": ".gitignore",
+      "source": {
+        "kind": "authored portable export support"
+      },
+      "source_sha256": null,
+      "sha256": "c7b77345808bacce2d10dfd51514b6f9334d388a7c61311c50d30dbf64a7a84f",
+      "bytes": 530,
+      "sanitized": false
+    },
+    {
+      "path": "Dockerfile",
+      "source": {
+        "kind": "authored portable export support"
+      },
+      "source_sha256": null,
+      "sha256": "f9ccb21060b73d2cf4719c3993ab8cdc7d89d6a967405db92f735252b01b47bb",
+      "bytes": 252,
+      "sanitized": false
+    },
+    {
+      "path": "README.md",
+      "source": {
+        "kind": "authored portable export support"
+      },
+      "source_sha256": null,
+      "sha256": "b302e491fdd02a47b132a28e64cee8c8f2ba9ba46abc48098e98f951bfa9200d",
+      "bytes": 8692,
+      "sanitized": false
+    },
+    {
+      "path": "SECURITY.md",
+      "source": {
+        "kind": "authored portable export support"
+      },
+      "source_sha256": null,
+      "sha256": "b0e05ca00ee161ddda750755b29f6d21afa3eeb4f4097b0df0bd0fd4f877d2c0",
+      "bytes": 2362,
+      "sanitized": false
+    },
+    {
+      "path": "VALIDATION.md",
+      "source": {
+        "kind": "authored portable export support"
+      },
+      "source_sha256": null,
+      "sha256": "ed64c064114bbd3723657ec8b96b1f727302cd876d5ca229a1f6a1866614a0b1",
+      "bytes": 3742,
+      "sanitized": false
+    },
+    {
+      "path": "deploy/chart/Chart.yaml",
+      "source": {
+        "kind": "authored portable export support"
+      },
+      "source_sha256": null,
+      "sha256": "f7f8a22c41323194872c87fc96cae9a2e9d4c5f9c4c60819287fe33f3fcb3a79",
+      "bytes": 173,
+      "sanitized": false
+    },
+    {
+      "path": "deploy/chart/templates/portal.yaml",
+      "source": {
+        "kind": "authored portable export support"
+      },
+      "source_sha256": null,
+      "sha256": "41f8d2f412414dc997b4b60ae5960f99b9c252940129a8ab3632c532baedd485",
+      "bytes": 1863,
+      "sanitized": false
+    },
+    {
+      "path": "deploy/chart/templates/stack.yaml",
+      "source": {
+        "kind": "authored portable export support"
+      },
+      "source_sha256": null,
+      "sha256": "7a90dfbe6135d8a211fbff49665b4cddbc82f99fc07405e0ebc87ac969ed85dd",
+      "bytes": 4929,
+      "sanitized": false
+    },
+    {
+      "path": "deploy/chart/values.yaml",
+      "source": {
+        "kind": "authored portable export support"
+      },
+      "source_sha256": null,
+      "sha256": "ae81e73a69416d5110e7284a3e9fb1fd53ad686bc9ccab32dca77b596f2e66ba",
+      "bytes": 620,
+      "sanitized": false
+    },
+    {
+      "path": "native/Dockerfile",
+      "source": {
+        "relative_path": "amx/Dockerfile"
+      },
+      "source_sha256": "ca5d0dc404c042fc52bd90886f2761b18dbdd9e137295673ed078767ed301a77",
+      "sha256": "ca5d0dc404c042fc52bd90886f2761b18dbdd9e137295673ed078767ed301a77",
+      "bytes": 2079,
+      "sanitized": false
+    },
+    {
+      "path": "native/README.md",
+      "source": {
+        "kind": "authored portable export support"
+      },
+      "source_sha256": null,
+      "sha256": "b4a97202cfc93913643ee80fe2b3492c427f84e76989838ebb24061aee17844f",
+      "bytes": 2369,
+      "sanitized": false
+    },
+    {
+      "path": "native/UPSTREAM-LICENSE",
+      "source": {
+        "relative_path": "amx/semantic-router-0.3.0/LICENSE"
+      },
+      "source_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "bytes": 11357,
+      "sanitized": false
+    },
+    {
+      "path": "native/diagnostics/compiled_properties.cpp",
+      "source": {
+        "relative_path": "amx/cpu-binding-runtime-20261007/compiled_properties.cpp"
+      },
+      "source_sha256": "779385a41751b38c26ddfb1ef33bdb40b162973416b2e27de4be11e412d0bf8c",
+      "sha256": "779385a41751b38c26ddfb1ef33bdb40b162973416b2e27de4be11e412d0bf8c",
+      "bytes": 3149,
+      "sanitized": false
+    },
+    {
+      "path": "native/diagnostics/pinning_off.cpp",
+      "source": {
+        "relative_path": "amx/unbound-bound-20261007/pinning_off.cpp"
+      },
+      "source_sha256": "148d4bf6adb297d9610040c33ba576ffac8cca7aeefdbf2ee522489f87db52b2",
+      "sha256": "148d4bf6adb297d9610040c33ba576ffac8cca7aeefdbf2ee522489f87db52b2",
+      "bytes": 1964,
+      "sanitized": false
+    },
+    {
+      "path": "native/entrypoint.sh",
+      "source": {
+        "relative_path": "amx/entrypoint.sh"
+      },
+      "source_sha256": "693e77698cf8709036759abc08eac347df243400f0d7e29dcdc3907e456bee33",
+      "sha256": "693e77698cf8709036759abc08eac347df243400f0d7e29dcdc3907e456bee33",
+      "bytes": 697,
+      "sanitized": false
+    },
+    {
+      "path": "native/export_model.py",
+      "source": {
+        "relative_path": "amx/export_model.py"
+      },
+      "source_sha256": "01438f260b06520164b274ce9b1bccf2d1f815e3ba3db0e870c3012ad1d789ec",
+      "sha256": "01438f260b06520164b274ce9b1bccf2d1f815e3ba3db0e870c3012ad1d789ec",
+      "bytes": 1548,
+      "sanitized": false
+    },
+    {
+      "path": "native/overlay/openvino-binding/CMakeLists.txt",
+      "source": {
+        "relative_path": "amx/semantic-router-0.3.0/openvino-binding/CMakeLists.txt"
+      },
+      "source_sha256": "46f682fe2da844cd691662aa1bd155f496df2833888de70a15a9c2d91975e32a",
+      "sha256": "46f682fe2da844cd691662aa1bd155f496df2833888de70a15a9c2d91975e32a",
+      "bytes": 8157,
+      "sanitized": false
+    },
+    {
+      "path": "native/overlay/openvino-binding/bench/go.mod",
+      "source": {
+        "relative_path": "amx/semantic-router-0.3.0/openvino-binding/bench/go.mod"
+      },
+      "source_sha256": "59e87df52cfff254ecd5c32949a96a18801636dd18a1da72c9f64d92566b7b22",
+      "sha256": "59e87df52cfff254ecd5c32949a96a18801636dd18a1da72c9f64d92566b7b22",
+      "bytes": 330,
+      "sanitized": false
+    },
+    {
+      "path": "native/overlay/openvino-binding/bench/mmbert_classifier_bench.go",
+      "source": {
+        "relative_path": "amx/semantic-router-0.3.0/openvino-binding/bench/mmbert_classifier_bench.go"
+      },
+      "source_sha256": "7020bd90ec2d429ea16d067cf7db7ce0b7b780d9c3aa0c0ce73b1143251425ca",
+      "sha256": "7020bd90ec2d429ea16d067cf7db7ce0b7b780d9c3aa0c0ce73b1143251425ca",
+      "bytes": 13644,
+      "sanitized": false
+    },
+    {
+      "path": "native/overlay/openvino-binding/bench/mmbert_embedding_bench.go",
+      "source": {
+        "relative_path": "amx/semantic-router-0.3.0/openvino-binding/bench/mmbert_embedding_bench.go"
+      },
+      "source_sha256": "0e16eecf8ac9adece5e335687d2ea5cccc289cb3e2dcc390e5858ecd950e66a5",
+      "sha256": "0e16eecf8ac9adece5e335687d2ea5cccc289cb3e2dcc390e5858ecd950e66a5",
+      "bytes": 17001,
+      "sanitized": false
+    },
+    {
+      "path": "native/overlay/openvino-binding/cmake/openvino_semantic_routerConfig.cmake.in",
+      "source": {
+        "relative_path": "amx/semantic-router-0.3.0/openvino-binding/cmake/openvino_semantic_routerConfig.cmake.in"
+      },
+      "source_sha256": "0a20600c215493a4ae5e986921f42f3bb047ee08dc3455e9423cd64f4ad9ee2c",
+      "sha256": "0a20600c215493a4ae5e986921f42f3bb047ee08dc3455e9423cd64f4ad9ee2c",
+      "bytes": 235,
+      "sanitized": false
+    },
+    {
+      "path": "native/overlay/openvino-binding/convert_modernbert_models.py",
+      "source": {
+        "relative_path": "amx/semantic-router-0.3.0/openvino-binding/convert_modernbert_models.py"
+      },
+      "source_sha256": "4caa367a5c57f17c3ddc285a0d752f55a0776760f3bc845b39f19c103cb07d46",
+      "sha256": "4caa367a5c57f17c3ddc285a0d752f55a0776760f3bc845b39f19c103cb07d46",
+      "bytes": 7871,
+      "sanitized": false
+    },
+    {
+      "path": "native/overlay/openvino-binding/cpp/include/classifiers/text_classifier.h",
+      "source": {
+        "relative_path": "amx/semantic-router-0.3.0/openvino-binding/cpp/include/classifiers/text_classifier.h"
+      },
+      "source_sha256": "10cb06dfc9066df7b7f0f40dbac67eab2eb4d0b55364e166eb7d4ba4259ff872",
+      "sha256": "10cb06dfc9066df7b7f0f40dbac67eab2eb4d0b55364e166eb7d4ba4259ff872",
+      "bytes": 1094,
+      "sanitized": false
+    },
+    {
+      "path": "native/overlay/openvino-binding/cpp/include/classifiers/token_classifier.h",
+      "source": {
+        "relative_path": "amx/semantic-router-0.3.0/openvino-binding/cpp/include/classifiers/token_classifier.h"
+      },
+      "source_sha256": "09e6b2a44cca4592e5c33e78ef5639ae1eef53e8848139d2949e9206efc23e34",
+      "sha256": "09e6b2a44cca4592e5c33e78ef5639ae1eef53e8848139d2949e9206efc23e34",
+      "bytes": 1012,
+      "sanitized": false
+    },
+    {
+      "path": "native/overlay/openvino-binding/cpp/include/core/model_manager.h",
+      "source": {
+        "relative_path": "amx/semantic-router-0.3.0/openvino-binding/cpp/include/core/model_manager.h"
+      },
+      "source_sha256": "a0e4795441068b72a6b06defeaa3145f8b0b2702df781c91957678bd49718c7c",
+      "sha256": "a0e4795441068b72a6b06defeaa3145f8b0b2702df781c91957678bd49718c7c",
+      "bytes": 1403,
+      "sanitized": false
+    },
+    {
+      "path": "native/overlay/openvino-binding/cpp/include/core/tokenizer.h",
+      "source": {
+        "relative_path": "amx/semantic-router-0.3.0/openvino-binding/cpp/include/core/tokenizer.h"
+      },
+      "source_sha256": "4978fb2b97064519726046988ec0487d0583a0350e892ccfef2054b0fcc6845a",
+      "sha256": "4978fb2b97064519726046988ec0487d0583a0350e892ccfef2054b0fcc6845a",
+      "bytes": 1516,
+      "sanitized": false
+    },
+    {
+      "path": "native/overlay/openvino-binding/cpp/include/core/types.h",
+      "source": {
+        "relative_path": "amx/semantic-router-0.3.0/openvino-binding/cpp/include/core/types.h"
+      },
+      "source_sha256": "f155aef40776843487b28ce60907d0fd4cdac066d80b5e0620bcbee4e0a1e07b",
+      "sha256": "f155aef40776843487b28ce60907d0fd4cdac066d80b5e0620bcbee4e0a1e07b",
+      "bytes": 2107,
+      "sanitized": false
+    },
+    {
+      "path": "native/overlay/openvino-binding/cpp/include/embeddings/embedding_generator.h",
+      "source": {
+        "relative_path": "amx/semantic-router-0.3.0/openvino-binding/cpp/include/embeddings/embedding_generator.h"
+      },
+      "source_sha256": "05d6e87edc45f0aafcc756af05758dc0f418cf6a73c5c160f940b555660e0128",
+      "sha256": "05d6e87edc45f0aafcc756af05758dc0f418cf6a73c5c160f940b555660e0128",
+      "bytes": 1520,
+      "sanitized": false
+    },
+    {
+      "path": "native/overlay/openvino-binding/cpp/include/openvino_semantic_router.h",
+      "source": {
+        "relative_path": "amx/semantic-router-0.3.0/openvino-binding/cpp/include/openvino_semantic_router.h"
+      },
+      "source_sha256": "09e3a8a30a1313740b10c2f7169f31025760fb7fb306023fce0d7964353a771e",
+      "sha256": "09e3a8a30a1313740b10c2f7169f31025760fb7fb306023fce0d7964353a771e",
+      "bytes": 13517,
+      "sanitized": false
+    },
+    {
+      "path": "native/overlay/openvino-binding/cpp/include/utils/math_utils.h",
+      "source": {
+        "relative_path": "amx/semantic-router-0.3.0/openvino-binding/cpp/include/utils/math_utils.h"
+      },
+      "source_sha256": "e0e49d3009737ec1ee15bd768de3eba939a05bffff042de274c1bd3cd39fe2dc",
+      "sha256": "e0e49d3009737ec1ee15bd768de3eba939a05bffff042de274c1bd3cd39fe2dc",
+      "bytes": 641,
+      "sanitized": false
+    },
+    {
+      "path": "native/overlay/openvino-binding/cpp/include/utils/preprocessing.h",
+      "source": {
+        "relative_path": "amx/semantic-router-0.3.0/openvino-binding/cpp/include/utils/preprocessing.h"
+      },
+      "source_sha256": "fce8cf24d7e1897fd24e21125fe636e26d020d6214ffc7cf8d2e2aa830351989",
+      "sha256": "fce8cf24d7e1897fd24e21125fe636e26d020d6214ffc7cf8d2e2aa830351989",
+      "bytes": 791,
+      "sanitized": false
+    },
+    {
+      "path": "native/overlay/openvino-binding/cpp/src/classifiers/text_classifier.cpp",
+      "source": {
+        "relative_path": "amx/semantic-router-0.3.0/openvino-binding/cpp/src/classifiers/text_classifier.cpp"
+      },
+      "source_sha256": "133e92bcf485465791226980bfdee3d5fc28c7ecaad5d90fdd34b1697952bb17",
+      "sha256": "133e92bcf485465791226980bfdee3d5fc28c7ecaad5d90fdd34b1697952bb17",
+      "bytes": 11771,
+      "sanitized": false
+    },
+    {
+      "path": "native/overlay/openvino-binding/cpp/src/classifiers/token_classifier.cpp",
+      "source": {
+        "relative_path": "amx/semantic-router-0.3.0/openvino-binding/cpp/src/classifiers/token_classifier.cpp"
+      },
+      "source_sha256": "60900855b54c8930d21a5427419af11ebed4cfc6ccdbfdbd91fca524b969254c",
+      "sha256": "60900855b54c8930d21a5427419af11ebed4cfc6ccdbfdbd91fca524b969254c",
+      "bytes": 11842,
+      "sanitized": false
+    },
+    {
+      "path": "native/overlay/openvino-binding/cpp/src/core/model_manager.cpp",
+      "source": {
+        "relative_path": "amx/semantic-router-0.3.0/openvino-binding/cpp/src/core/model_manager.cpp"
+      },
+      "source_sha256": "e379a2aa42a49ebd4f5fefa42e22ba82057725c78a2eef02f9b68a65934f8c57",
+      "sha256": "e379a2aa42a49ebd4f5fefa42e22ba82057725c78a2eef02f9b68a65934f8c57",
+      "bytes": 5078,
+      "sanitized": false
+    },
+    {
+      "path": "native/overlay/openvino-binding/cpp/src/core/tokenizer.cpp",
+      "source": {
+        "relative_path": "amx/semantic-router-0.3.0/openvino-binding/cpp/src/core/tokenizer.cpp"
+      },
+      "source_sha256": "652b56b7b2d2de5f716cbf7bde5367b475cd128d783c5c00abede27ae5e208c4",
+      "sha256": "652b56b7b2d2de5f716cbf7bde5367b475cd128d783c5c00abede27ae5e208c4",
+      "bytes": 6086,
+      "sanitized": false
+    },
+    {
+      "path": "native/overlay/openvino-binding/cpp/src/embeddings/embedding_generator.cpp",
+      "source": {
+        "relative_path": "amx/semantic-router-0.3.0/openvino-binding/cpp/src/embeddings/embedding_generator.cpp"
+      },
+      "source_sha256": "a80aac1e5d0cdb8f338eb083bebdd26f3f07f3df93c4d6a163d0f95471755a1c",
+      "sha256": "a80aac1e5d0cdb8f338eb083bebdd26f3f07f3df93c4d6a163d0f95471755a1c",
+      "bytes": 12961,
+      "sanitized": false
+    },
+    {
+      "path": "native/overlay/openvino-binding/cpp/src/ffi/openvino_semantic_router_ffi.cpp",
+      "source": {
+        "relative_path": "amx/semantic-router-0.3.0/openvino-binding/cpp/src/ffi/openvino_semantic_router_ffi.cpp"
+      },
+      "source_sha256": "9e5dea56fb2c69600f7996e7df1736067ae30713eeefcf5c0f15a111be93f3f6",
+      "sha256": "9e5dea56fb2c69600f7996e7df1736067ae30713eeefcf5c0f15a111be93f3f6",
+      "bytes": 17911,
+      "sanitized": false
+    },
+    {
+      "path": "native/overlay/openvino-binding/cpp/src/utils/math_utils.cpp",
+      "source": {
+        "relative_path": "amx/semantic-router-0.3.0/openvino-binding/cpp/src/utils/math_utils.cpp"
+      },
+      "source_sha256": "d10ff048cf5b0216072c4b33fd8ecf14bd1a0955f50599535ebd956134a6fb99",
+      "sha256": "d10ff048cf5b0216072c4b33fd8ecf14bd1a0955f50599535ebd956134a6fb99",
+      "bytes": 1906,
+      "sanitized": false
+    },
+    {
+      "path": "native/overlay/openvino-binding/cpp/src/utils/preprocessing.cpp",
+      "source": {
+        "relative_path": "amx/semantic-router-0.3.0/openvino-binding/cpp/src/utils/preprocessing.cpp"
+      },
+      "source_sha256": "308fc01a5db2a8bdfa313dfbc99d16694a93165a771e8e027eadd7bc8368dcc9",
+      "sha256": "308fc01a5db2a8bdfa313dfbc99d16694a93165a771e8e027eadd7bc8368dcc9",
+      "bytes": 2430,
+      "sanitized": false
+    },
+    {
+      "path": "native/overlay/openvino-binding/examples/embedding/embedding_example.go",
+      "source": {
+        "relative_path": "amx/semantic-router-0.3.0/openvino-binding/examples/embedding/embedding_example.go"
+      },
+      "source_sha256": "a18c3de06333fc2de708221824aa6ad189937773ecdbe4feffd8a3e798597bee",
+      "sha256": "a18c3de06333fc2de708221824aa6ad189937773ecdbe4feffd8a3e798597bee",
+      "bytes": 3488,
+      "sanitized": false
+    },
+    {
+      "path": "native/overlay/openvino-binding/examples/similarity/similarity_example.go",
+      "source": {
+        "relative_path": "amx/semantic-router-0.3.0/openvino-binding/examples/similarity/similarity_example.go"
+      },
+      "source_sha256": "6c6f9251922d57e6ce6d8de9dbd0ba391e1faf12211dfd8c8b9758d787524611",
+      "sha256": "6c6f9251922d57e6ce6d8de9dbd0ba391e1faf12211dfd8c8b9758d787524611",
+      "bytes": 2650,
+      "sanitized": false
+    },
+    {
+      "path": "native/overlay/openvino-binding/go.mod",
+      "source": {
+        "relative_path": "amx/semantic-router-0.3.0/openvino-binding/go.mod"
+      },
+      "source_sha256": "79cd564716a79311a4e046cc924e56c4ac6b2285fc383a0499d33487c87b8429",
+      "sha256": "79cd564716a79311a4e046cc924e56c4ac6b2285fc383a0499d33487c87b8429",
+      "bytes": 75,
+      "sanitized": false
+    },
+    {
+      "path": "native/overlay/openvino-binding/scripts/convert_test_tokenizers.py",
+      "source": {
+        "relative_path": "amx/semantic-router-0.3.0/openvino-binding/scripts/convert_test_tokenizers.py"
+      },
+      "source_sha256": "d3df194fa210712c51a6a3e86f34509784eaa129c69903c312693244327cdd19",
+      "sha256": "d3df194fa210712c51a6a3e86f34509784eaa129c69903c312693244327cdd19",
+      "bytes": 5559,
+      "sanitized": false
+    },
+    {
+      "path": "native/overlay/openvino-binding/scripts/convert_tokenizers.py",
+      "source": {
+        "relative_path": "amx/semantic-router-0.3.0/openvino-binding/scripts/convert_tokenizers.py"
+      },
+      "source_sha256": "ed15becbac9b39d14c2f7502c6bced29770ddbce1667b83b5bb3387f87b6f84c",
+      "sha256": "ed15becbac9b39d14c2f7502c6bced29770ddbce1667b83b5bb3387f87b6f84c",
+      "bytes": 3627,
+      "sanitized": false
+    },
+    {
+      "path": "native/overlay/openvino-binding/semantic-router.go",
+      "source": {
+        "relative_path": "amx/semantic-router-0.3.0/openvino-binding/semantic-router.go"
+      },
+      "source_sha256": "a80c8cb17f1ac89d01964f419b27ba355f0cdb592b598f5a9652442a956ce220",
+      "sha256": "a80c8cb17f1ac89d01964f419b27ba355f0cdb592b598f5a9652442a956ce220",
+      "bytes": 27456,
+      "sanitized": false
+    },
+    {
+      "path": "native/overlay/openvino-binding/semantic-router_test.go",
+      "source": {
+        "relative_path": "amx/semantic-router-0.3.0/openvino-binding/semantic-router_test.go"
+      },
+      "source_sha256": "a7aaee3811e4432dd52daedae1e21f9506375a556d2f1d9ffb4fe5d0f4d3719e",
+      "sha256": "a7aaee3811e4432dd52daedae1e21f9506375a556d2f1d9ffb4fe5d0f4d3719e",
+      "bytes": 23275,
+      "sanitized": false
+    },
+    {
+      "path": "native/overlay/src/semantic-router/pkg/classification/classifier_option_rules.go",
+      "source": {
+        "relative_path": "amx/semantic-router-0.3.0/src/semantic-router/pkg/classification/classifier_option_rules.go"
+      },
+      "source_sha256": "ea2519ac234317eff9d8fc9b328a54f056787b7d08baf8f70fc05bc72a8d342e",
+      "sha256": "ea2519ac234317eff9d8fc9b328a54f056787b7d08baf8f70fc05bc72a8d342e",
+      "bytes": 8091,
+      "sanitized": false
+    },
+    {
+      "path": "native/overlay/src/semantic-router/pkg/classification/complexity_candidate_embeddings.go",
+      "source": {
+        "relative_path": "amx/semantic-router-0.3.0/src/semantic-router/pkg/classification/complexity_candidate_embeddings.go"
+      },
+      "source_sha256": "c0cafd3ea5a4f670612c72dca78e75837ea6190d5a153d557e8daa78215740b4",
+      "sha256": "c0cafd3ea5a4f670612c72dca78e75837ea6190d5a153d557e8daa78215740b4",
+      "bytes": 8055,
+      "sanitized": false
+    },
+    {
+      "path": "native/overlay/src/semantic-router/pkg/classification/complexity_query_embeddings.go",
+      "source": {
+        "relative_path": "amx/semantic-router-0.3.0/src/semantic-router/pkg/classification/complexity_query_embeddings.go"
+      },
+      "source_sha256": "76b7344c02bb18c788b1bdd15a1bd68940c4d5914bd4b481956cf3ef47a51397",
+      "sha256": "76b7344c02bb18c788b1bdd15a1bd68940c4d5914bd4b481956cf3ef47a51397",
+      "bytes": 2149,
+      "sanitized": false
+    },
+    {
+      "path": "native/overlay/src/semantic-router/pkg/classification/openvino_backend_cgo.go",
+      "source": {
+        "relative_path": "amx/semantic-router-0.3.0/src/semantic-router/pkg/classification/openvino_backend_cgo.go"
+      },
+      "source_sha256": "d105b74e8c6e3ae0692a2564b930fdc37fa2b5976842eb93c03f6339cddf1af5",
+      "sha256": "d105b74e8c6e3ae0692a2564b930fdc37fa2b5976842eb93c03f6339cddf1af5",
+      "bytes": 3493,
+      "sanitized": false
+    },
+    {
+      "path": "native/prepare_context.py",
+      "source": {
+        "kind": "authored portable export support"
+      },
+      "source_sha256": null,
+      "sha256": "4bf284d55ea3ddda2ba4c2f5d4aad0e5f9de96abbc0e22a8ae204b5fb2e833f1",
+      "bytes": 1240,
+      "sanitized": false
+    },
+    {
+      "path": "native/upstream-base-hashes.json",
+      "source": {
+        "relative_path": "sr-src.tar.gz",
+        "kind": "derived base-file hashes, archive excluded"
+      },
+      "source_sha256": "19e0b65527390d4f33344f4f37fa9c048858a12c6c5e69b06a4a4aae7ac13cd5",
+      "sha256": "19e0b65527390d4f33344f4f37fa9c048858a12c6c5e69b06a4a4aae7ac13cd5",
+      "bytes": 915,
+      "sanitized": false
+    },
+    {
+      "path": "native/verify_model.py",
+      "source": {
+        "relative_path": "amx/verify_model.py"
+      },
+      "source_sha256": "00035d8fe54473f2d1e7ca8becadd52d32d34afff028aa7c518caebb0c8903ab",
+      "sha256": "00035d8fe54473f2d1e7ca8becadd52d32d34afff028aa7c518caebb0c8903ab",
+      "bytes": 2338,
+      "sanitized": false
+    },
+    {
+      "path": "observability/README.md",
+      "source": {
+        "kind": "authored portable export support"
+      },
+      "source_sha256": null,
+      "sha256": "608da34fe4177c77066c66971e72aecfcd10554bbfeaab51efebb9e646ab34c3",
+      "bytes": 1781,
+      "sanitized": false
+    },
+    {
+      "path": "observability/build.py",
+      "source": {
+        "relative_path": "observability/router-operations/build.py"
+      },
+      "source_sha256": "5e087da26c9818084bb278023223d484f8af350ac2849a1d36a9177c8f7dc7e4",
+      "sha256": "575434ce808ba9b97b68c03fb7cd44a797a30ab1abd23b5e48a6108f87b78a30",
+      "bytes": 16708,
+      "sanitized": true,
+      "change_note": "Replace source datasource UID, namespace, release selector and ON/OFF scrape DNS with portable examples; preserve dashboard queries and mode separation."
+    },
+    {
+      "path": "observability/dashboard.json",
+      "source": {
+        "relative_path": "observability/router-operations/dashboard.json"
+      },
+      "source_sha256": "d574208f1dd7e65f9e134ff973752c7c24c238f5067390c8e153ee6b74bd8ce6",
+      "sha256": "717cc665c3a96e639ba64a5d0467222abc4f87b9726320d90af0b0f2b16e2fcb",
+      "bytes": 53317,
+      "sanitized": true,
+      "change_note": "Regenerated-equivalent dashboard using example datasource UID; queries and metric interpretation unchanged."
+    },
+    {
+      "path": "observability/native_evidence.py",
+      "source": {
+        "namespace": "vllm-semantic-router-system",
+        "configmap": "sr-amx-control-bnc10",
+        "key": "native_evidence.py",
+        "resource_version": "358492230"
+      },
+      "source_sha256": "d77178669b5e50bf839129caa78c62ed184487ced3c8808716360e54b075ec5b",
+      "sha256": "d77178669b5e50bf839129caa78c62ed184487ced3c8808716360e54b075ec5b",
+      "bytes": 1392,
+      "sanitized": false
+    },
+    {
+      "path": "observability/scrapeconfig.json",
+      "source": {
+        "relative_path": "observability/router-operations/scrapeconfig.json"
+      },
+      "source_sha256": "d2e0e11498878c4af71d6336a3e88100d523c9ae52c782337126e77b6844d3a0",
+      "sha256": "dbea260c833b6e0384d15c55b9e2cc47ce2c7726e6c9e58c4c50761f664c8834",
+      "bytes": 1413,
+      "sanitized": true,
+      "change_note": "Regenerated-equivalent scrape template using example namespace/selector and distinct chart-compatible ON/OFF services."
+    },
+    {
+      "path": "observability/test_build.py",
+      "source": {
+        "relative_path": "observability/router-operations/test_build.py"
+      },
+      "source_sha256": "5441869659651100280c5b72d2b3b69a4bcd10e7509931ac51024a3acfa1aac7",
+      "sha256": "f5e6fa89060fd74556b4c92d020c9b992702bbe3e4389b1f3179902e77288143",
+      "bytes": 3915,
+      "sanitized": true,
+      "change_note": "Update package-only fixture expectations for portable identifiers; assert distinct mode targets and exact builder/generated-artifact equality."
+    },
+    {
+      "path": "portal/analysis_release.py",
+      "source": {
+        "namespace": "vllm-semantic-router-system",
+        "configmap": "sr-portal-profile-src-c86b84a6706b",
+        "uid": "ad3efbde-2137-4cd9-87b2-ea896f5340ae",
+        "resource_version": "423797084",
+        "key": "analysis_release.py"
+      },
+      "source_sha256": "420c1c9a3cc08d47f1988727a9938376494fe327e72a99a8d4e785ea4f7f42c5",
+      "sha256": "8f842fa4358e198dd3d28c2c85b29e3ca2b0654a2ca072a86daddef0c6037d07",
+      "bytes": 3057,
+      "sanitized": true,
+      "change_note": "Replace historical host/date-specific report routes and artifact filenames with generic allowlists; preserve distinct report/version slots; no report artifacts shipped and no source-identity claim."
+    },
+    {
+      "path": "portal/axes_release.py",
+      "source": {
+        "namespace": "vllm-semantic-router-system",
+        "configmap": "sr-portal-profile-src-c86b84a6706b",
+        "uid": "ad3efbde-2137-4cd9-87b2-ea896f5340ae",
+        "resource_version": "423797084",
+        "key": "axes_release.py"
+      },
+      "source_sha256": "24117e0a70ef70d45b3fa944c3e795e0b051870a64855d63ad30dd3863ded511",
+      "sha256": "24117e0a70ef70d45b3fa944c3e795e0b051870a64855d63ad30dd3863ded511",
+      "bytes": 2205,
+      "sanitized": false
+    },
+    {
+      "path": "portal/axis_profiles.json",
+      "source": {
+        "namespace": "vllm-semantic-router-system",
+        "configmap": "sr-portal-profile-src-c86b84a6706b",
+        "uid": "ad3efbde-2137-4cd9-87b2-ea896f5340ae",
+        "resource_version": "423797084",
+        "key": "axis_profiles.json"
+      },
+      "source_sha256": "613ebec8c780b5bbe0555cf0f46942a6667cb6f7ece2a1a522828580cb9f00f4",
+      "sha256": "613ebec8c780b5bbe0555cf0f46942a6667cb6f7ece2a1a522828580cb9f00f4",
+      "bytes": 407,
+      "sanitized": false
+    },
+    {
+      "path": "portal/batch.js",
+      "source": {
+        "namespace": "vllm-semantic-router-system",
+        "configmap": "sr-portal-profile-src-c86b84a6706b",
+        "uid": "ad3efbde-2137-4cd9-87b2-ea896f5340ae",
+        "resource_version": "423797084",
+        "key": "batch.js"
+      },
+      "source_sha256": "1f30144cda6a191856d7a40757864e22eb9a3c4ce2a5381e1869e85251e7dc7d",
+      "sha256": "1f30144cda6a191856d7a40757864e22eb9a3c4ce2a5381e1869e85251e7dc7d",
+      "bytes": 11592,
+      "sanitized": false
+    },
+    {
+      "path": "portal/batch_fragment.html",
+      "source": {
+        "namespace": "vllm-semantic-router-system",
+        "configmap": "sr-portal-profile-src-c86b84a6706b",
+        "uid": "ad3efbde-2137-4cd9-87b2-ea896f5340ae",
+        "resource_version": "423797084",
+        "key": "batch_fragment.html"
+      },
+      "source_sha256": "b7aea818f2e9c512dc2a65203827b570bfb421ef37df0bc5adae19fe28f55666",
+      "sha256": "b7aea818f2e9c512dc2a65203827b570bfb421ef37df0bc5adae19fe28f55666",
+      "bytes": 9635,
+      "sanitized": false
+    },
+    {
+      "path": "portal/batch_release.py",
+      "source": {
+        "namespace": "vllm-semantic-router-system",
+        "configmap": "sr-portal-profile-src-c86b84a6706b",
+        "uid": "ad3efbde-2137-4cd9-87b2-ea896f5340ae",
+        "resource_version": "423797084",
+        "key": "batch_release.py"
+      },
+      "source_sha256": "6baa27342dde6e5e81ac46f5fbcf73703f10e84dd657b0d14a5394ca86732a82",
+      "sha256": "a011fb3917cfde233682ff2da862afb5ae41cd55623a2712661d73c828954e90",
+      "bytes": 19006,
+      "sanitized": true,
+      "change_note": "Eval URLs externally configured; pin explicitly labeled synthetic corpus instead of excluded production corpus."
+    },
+    {
+      "path": "portal/binding_release.py",
+      "source": {
+        "namespace": "vllm-semantic-router-system",
+        "configmap": "sr-portal-profile-src-c86b84a6706b",
+        "uid": "ad3efbde-2137-4cd9-87b2-ea896f5340ae",
+        "resource_version": "423797084",
+        "key": "binding_release.py"
+      },
+      "source_sha256": "febb6cf251ec0c30f6761da8df2a95b8ecdbd1b646d736ce4e3a77dfa058049f",
+      "sha256": "96df0ad992149c3e08c37bb9a935f8ae30f9d6b2ee75b8faa459aac266d5b780",
+      "bytes": 1138,
+      "sanitized": true,
+      "change_note": "Replace historical host/date-specific report routes and artifact filenames with generic allowlists; preserve distinct report/version slots; no report artifacts shipped and no source-identity claim."
+    },
+    {
+      "path": "portal/binding_sweep_release.py",
+      "source": {
+        "namespace": "vllm-semantic-router-system",
+        "configmap": "sr-portal-profile-src-c86b84a6706b",
+        "uid": "ad3efbde-2137-4cd9-87b2-ea896f5340ae",
+        "resource_version": "423797084",
+        "key": "binding_sweep_release.py"
+      },
+      "source_sha256": "b77e44afda985cdd71bafe1a9bee363b015705fda60832c0076001dec73d1807",
+      "sha256": "009a8b41554c540eebd484765d5d7278b3cf377406e486092355fb0389d1d049",
+      "bytes": 1960,
+      "sanitized": true,
+      "change_note": "Replace historical host/date-specific report routes and artifact filenames with generic allowlists; preserve distinct report/version slots; no report artifacts shipped and no source-identity claim."
+    },
+    {
+      "path": "portal/c15_release.py",
+      "source": {
+        "namespace": "vllm-semantic-router-system",
+        "configmap": "sr-portal-profile-src-c86b84a6706b",
+        "uid": "ad3efbde-2137-4cd9-87b2-ea896f5340ae",
+        "resource_version": "423797084",
+        "key": "c15_release.py"
+      },
+      "source_sha256": "88a223f906ac2dda88834324132d67bd2dc7b92a7304bb746ddf9ffde4c4be62",
+      "sha256": "88a223f906ac2dda88834324132d67bd2dc7b92a7304bb746ddf9ffde4c4be62",
+      "bytes": 3175,
+      "sanitized": false
+    },
+    {
+      "path": "portal/calibration_release.py",
+      "source": {
+        "namespace": "vllm-semantic-router-system",
+        "configmap": "sr-portal-profile-src-c86b84a6706b",
+        "uid": "ad3efbde-2137-4cd9-87b2-ea896f5340ae",
+        "resource_version": "423797084",
+        "key": "calibration_release.py"
+      },
+      "source_sha256": "e7e04934cc4fc85474c8054be0e8f06563e094fdda1da54138a5d3c827183466",
+      "sha256": "e7e04934cc4fc85474c8054be0e8f06563e094fdda1da54138a5d3c827183466",
+      "bytes": 527,
+      "sanitized": false
+    },
+    {
+      "path": "portal/cards_release.py",
+      "source": {
+        "namespace": "vllm-semantic-router-system",
+        "configmap": "sr-portal-profile-src-c86b84a6706b",
+        "uid": "ad3efbde-2137-4cd9-87b2-ea896f5340ae",
+        "resource_version": "423797084",
+        "key": "cards_release.py"
+      },
+      "source_sha256": "77b706fda74aeb72e281ebabe4d0fef9de363bbacc4c1622e6f80d3e5b263e68",
+      "sha256": "77b706fda74aeb72e281ebabe4d0fef9de363bbacc4c1622e6f80d3e5b263e68",
+      "bytes": 1578,
+      "sanitized": false
+    },
+    {
+      "path": "portal/chart_release.py",
+      "source": {
+        "namespace": "vllm-semantic-router-system",
+        "configmap": "sr-portal-profile-src-c86b84a6706b",
+        "uid": "ad3efbde-2137-4cd9-87b2-ea896f5340ae",
+        "resource_version": "423797084",
+        "key": "chart_release.py"
+      },
+      "source_sha256": "e868f0c6f3f3da3673e9552a72c15110aaf6133307182967720db485c0de3310",
+      "sha256": "e868f0c6f3f3da3673e9552a72c15110aaf6133307182967720db485c0de3310",
+      "bytes": 2260,
+      "sanitized": false
+    },
+    {
+      "path": "portal/compare.html",
+      "source": {
+        "namespace": "vllm-semantic-router-system",
+        "configmap": "sr-portal-profile-src-c86b84a6706b",
+        "uid": "ad3efbde-2137-4cd9-87b2-ea896f5340ae",
+        "resource_version": "423797084",
+        "key": "compare.html"
+      },
+      "source_sha256": "3e8a9e7ffab2c71cb54eb79ff64ed63cc9b2a9bfce89592fa9a7dece254f4a77",
+      "sha256": "3e8a9e7ffab2c71cb54eb79ff64ed63cc9b2a9bfce89592fa9a7dece254f4a77",
+      "bytes": 7699,
+      "sanitized": false
+    },
+    {
+      "path": "portal/compare_release.py",
+      "source": {
+        "namespace": "vllm-semantic-router-system",
+        "configmap": "sr-portal-profile-src-c86b84a6706b",
+        "uid": "ad3efbde-2137-4cd9-87b2-ea896f5340ae",
+        "resource_version": "423797084",
+        "key": "compare_release.py"
+      },
+      "source_sha256": "233a6c82472815ca540a5039ae6188dbfdf121a4273a74b6a20c5a72f8dc5fc4",
+      "sha256": "bbd63d54e747dfb3bd1c244197644a951853231d8656ec30cd2c28c5e62803b4",
+      "bytes": 9571,
+      "sanitized": true,
+      "change_note": "Jaeger URL externally configured with disconnected loopback default; distinct portable trace service identities with explicit environment overrides; sanitized report-chain comment."
+    },
+    {
+      "path": "portal/demo.js",
+      "source": {
+        "namespace": "vllm-semantic-router-system",
+        "configmap": "sr-portal-profile-src-c86b84a6706b",
+        "uid": "ad3efbde-2137-4cd9-87b2-ea896f5340ae",
+        "resource_version": "423797084",
+        "key": "demo.js"
+      },
+      "source_sha256": "cdefc8f6ee412c7158302f723fe2d622d48e817c229867fd189a7944c1562364",
+      "sha256": "cdefc8f6ee412c7158302f723fe2d622d48e817c229867fd189a7944c1562364",
+      "bytes": 10761,
+      "sanitized": false
+    },
+    {
+      "path": "portal/english_release.py",
+      "source": {
+        "namespace": "vllm-semantic-router-system",
+        "configmap": "sr-portal-profile-src-c86b84a6706b",
+        "uid": "ad3efbde-2137-4cd9-87b2-ea896f5340ae",
+        "resource_version": "423797084",
+        "key": "english_release.py"
+      },
+      "source_sha256": "28adc271fa97e9088a1fa8963dd4e065e30cf4d183e0bd20ad52dcd06390715f",
+      "sha256": "28adc271fa97e9088a1fa8963dd4e065e30cf4d183e0bd20ad52dcd06390715f",
+      "bytes": 2856,
+      "sanitized": false
+    },
+    {
+      "path": "portal/fill_release.py",
+      "source": {
+        "namespace": "vllm-semantic-router-system",
+        "configmap": "sr-portal-profile-src-c86b84a6706b",
+        "uid": "ad3efbde-2137-4cd9-87b2-ea896f5340ae",
+        "resource_version": "423797084",
+        "key": "fill_release.py"
+      },
+      "source_sha256": "12de99b7a0a4b20aeee69939dc9888e33256034fb6e9f6c3bba80ad523c743fd",
+      "sha256": "7fe9deef5ddce347c1fa42ee62dfaffc1f6d84e3f9234f02900994ae40650f9d",
+      "bytes": 2561,
+      "sanitized": true,
+      "change_note": "Preserve final UI chain; add synthetic-data notice and honest report landing route."
+    },
+    {
+      "path": "portal/fit_release.py",
+      "source": {
+        "namespace": "vllm-semantic-router-system",
+        "configmap": "sr-portal-profile-src-c86b84a6706b",
+        "uid": "ad3efbde-2137-4cd9-87b2-ea896f5340ae",
+        "resource_version": "423797084",
+        "key": "fit_release.py"
+      },
+      "source_sha256": "dba5415c41516d54817104557036fe305e77b303c9ed37fdbc2a5743dac16cb4",
+      "sha256": "dba5415c41516d54817104557036fe305e77b303c9ed37fdbc2a5743dac16cb4",
+      "bytes": 4909,
+      "sanitized": false
+    },
+    {
+      "path": "portal/fullscreen_release.py",
+      "source": {
+        "namespace": "vllm-semantic-router-system",
+        "configmap": "sr-portal-profile-src-c86b84a6706b",
+        "uid": "ad3efbde-2137-4cd9-87b2-ea896f5340ae",
+        "resource_version": "423797084",
+        "key": "fullscreen_release.py"
+      },
+      "source_sha256": "c5b127cc873a23deacf6ac066f3e520a3f1b2f5ef6b7ce19e0d822fdd0d01c3c",
+      "sha256": "c5b127cc873a23deacf6ac066f3e520a3f1b2f5ef6b7ce19e0d822fdd0d01c3c",
+      "bytes": 2806,
+      "sanitized": false
+    },
+    {
+      "path": "portal/litellm_portal_release.py",
+      "source": {
+        "namespace": "vllm-semantic-router-system",
+        "configmap": "sr-portal-profile-src-c86b84a6706b",
+        "uid": "ad3efbde-2137-4cd9-87b2-ea896f5340ae",
+        "resource_version": "423797084",
+        "key": "litellm_portal_release.py"
+      },
+      "source_sha256": "71a955cff5bfd21b726bb87fd3821f0145c24d9ad745fe31ea113c38615975be",
+      "sha256": "8f4afebc4e0fde5c99284e4579610d6efb90ac522c06516af3b883fe0012d0f4",
+      "bytes": 4150,
+      "sanitized": true,
+      "change_note": "Clarify that imported historical report modules install sanitized allowlists only, not live report artifacts."
+    },
+    {
+      "path": "portal/parallel_release.py",
+      "source": {
+        "namespace": "vllm-semantic-router-system",
+        "configmap": "sr-portal-profile-src-c86b84a6706b",
+        "uid": "ad3efbde-2137-4cd9-87b2-ea896f5340ae",
+        "resource_version": "423797084",
+        "key": "parallel_release.py"
+      },
+      "source_sha256": "eba73233d96f0b5da0ac198030f0a121e3bbfa42dcae4559673f0b887175693e",
+      "sha256": "eba73233d96f0b5da0ac198030f0a121e3bbfa42dcae4559673f0b887175693e",
+      "bytes": 11904,
+      "sanitized": false
+    },
+    {
+      "path": "portal/portal_release.py",
+      "source": {
+        "namespace": "vllm-semantic-router-system",
+        "configmap": "sr-portal-profile-src-c86b84a6706b",
+        "uid": "ad3efbde-2137-4cd9-87b2-ea896f5340ae",
+        "resource_version": "423797084",
+        "key": "portal_release.py"
+      },
+      "source_sha256": "0f5cd8d15e2ef84702cdf8bebf16e846beddfc612012c75e3ca1482aa8167d38",
+      "sha256": "8ef652aa5d883dac71ab9a5cb23832651a7c205c0df2454dbf999d04f9c24243",
+      "bytes": 1158,
+      "sanitized": true,
+      "change_note": "Replace historical host/date-specific report routes and artifact filenames with generic allowlists; preserve distinct report/version slots; no report artifacts shipped and no source-identity claim."
+    },
+    {
+      "path": "portal/portal_server.py",
+      "source": {
+        "namespace": "vllm-semantic-router-system",
+        "configmap": "sr-portal-profile-src-c86b84a6706b",
+        "uid": "ad3efbde-2137-4cd9-87b2-ea896f5340ae",
+        "resource_version": "423797084",
+        "key": "portal_server.py"
+      },
+      "source_sha256": "2c543b7abc061b74ebdc44cc4aebd0ab61bb20712479acb34dfe001e6c3c516f",
+      "sha256": "63b4e2f859dfbbb9f3644b47161fe0607aa419ffdea0e9973a812ddc26012a71",
+      "bytes": 41216,
+      "sanitized": true,
+      "change_note": "Loopback endpoints and bind default; portable reports root; generic historical report routes and filenames; manager mutation disabled unless explicitly enabled; omit backend URL from startup log."
+    },
+    {
+      "path": "portal/profiles_release.py",
+      "source": {
+        "namespace": "vllm-semantic-router-system",
+        "configmap": "sr-portal-profile-src-c86b84a6706b",
+        "uid": "ad3efbde-2137-4cd9-87b2-ea896f5340ae",
+        "resource_version": "423797084",
+        "key": "profiles_release.py"
+      },
+      "source_sha256": "8c5c344f9712bc81abe8e632b7657cc6c8c5bb7c11bf7ee2b9c5fde08401d355",
+      "sha256": "8c5c344f9712bc81abe8e632b7657cc6c8c5bb7c11bf7ee2b9c5fde08401d355",
+      "bytes": 3248,
+      "sanitized": false
+    },
+    {
+      "path": "portal/race.js",
+      "source": {
+        "namespace": "vllm-semantic-router-system",
+        "configmap": "sr-portal-profile-src-c86b84a6706b",
+        "uid": "ad3efbde-2137-4cd9-87b2-ea896f5340ae",
+        "resource_version": "423797084",
+        "key": "race.js"
+      },
+      "source_sha256": "0a85089ce8f6ddac95569c067b494633cb13481c3280b5f23d99361742239dda",
+      "sha256": "0a85089ce8f6ddac95569c067b494633cb13481c3280b5f23d99361742239dda",
+      "bytes": 8930,
+      "sanitized": false
+    },
+    {
+      "path": "portal/race_fragment.html",
+      "source": {
+        "namespace": "vllm-semantic-router-system",
+        "configmap": "sr-portal-profile-src-c86b84a6706b",
+        "uid": "ad3efbde-2137-4cd9-87b2-ea896f5340ae",
+        "resource_version": "423797084",
+        "key": "race_fragment.html"
+      },
+      "source_sha256": "002d0c37604ee2b46bcbcf089cca3c86fde530ddceef1b954ea6b86a87f31e77",
+      "sha256": "002d0c37604ee2b46bcbcf089cca3c86fde530ddceef1b954ea6b86a87f31e77",
+      "bytes": 8557,
+      "sanitized": false
+    },
+    {
+      "path": "portal/race_release.py",
+      "source": {
+        "namespace": "vllm-semantic-router-system",
+        "configmap": "sr-portal-profile-src-c86b84a6706b",
+        "uid": "ad3efbde-2137-4cd9-87b2-ea896f5340ae",
+        "resource_version": "423797084",
+        "key": "race_release.py"
+      },
+      "source_sha256": "9a095c948b2b17e34ac7f38273bbf590710edfda14bde83234b93d4937aefb88",
+      "sha256": "9a095c948b2b17e34ac7f38273bbf590710edfda14bde83234b93d4937aefb88",
+      "bytes": 16524,
+      "sanitized": false
+    },
+    {
+      "path": "portal/race_white.css",
+      "source": {
+        "namespace": "vllm-semantic-router-system",
+        "configmap": "sr-portal-profile-src-c86b84a6706b",
+        "uid": "ad3efbde-2137-4cd9-87b2-ea896f5340ae",
+        "resource_version": "423797084",
+        "key": "race_white.css"
+      },
+      "source_sha256": "f3f9cb6a8c846bbaa624e23f1fe93f44e0476d6da2f8b644d8c5e8b291d52081",
+      "sha256": "f3f9cb6a8c846bbaa624e23f1fe93f44e0476d6da2f8b644d8c5e8b291d52081",
+      "bytes": 1880,
+      "sanitized": false
+    },
+    {
+      "path": "portal/streams_contrast_release.py",
+      "source": {
+        "namespace": "vllm-semantic-router-system",
+        "configmap": "sr-portal-profile-src-c86b84a6706b",
+        "uid": "ad3efbde-2137-4cd9-87b2-ea896f5340ae",
+        "resource_version": "423797084",
+        "key": "streams_contrast_release.py"
+      },
+      "source_sha256": "91c0314a22b6cafa9640720b9f4500f6aa576118c59eb88425d3cf048111bc5e",
+      "sha256": "54aa9997b65bf7f396749bee46984fa6c3aa7727114b5b4b9eb7713099f9f84c",
+      "bytes": 2098,
+      "sanitized": true,
+      "change_note": "Replace historical host/date-specific report routes and artifact filenames with generic allowlists; preserve distinct report/version slots; no report artifacts shipped and no source-identity claim."
+    },
+    {
+      "path": "portal/translations.json",
+      "source": {
+        "namespace": "vllm-semantic-router-system",
+        "configmap": "sr-portal-profile-src-c86b84a6706b",
+        "uid": "ad3efbde-2137-4cd9-87b2-ea896f5340ae",
+        "resource_version": "423797084",
+        "key": "translations.json"
+      },
+      "source_sha256": "874ee483378c8b3e95943c24230bd6e3c4ea5957b94658a0f84d694428c18edb",
+      "sha256": "874ee483378c8b3e95943c24230bd6e3c4ea5957b94658a0f84d694428c18edb",
+      "bytes": 27581,
+      "sanitized": false
+    },
+    {
+      "path": "portal/white_release.py",
+      "source": {
+        "namespace": "vllm-semantic-router-system",
+        "configmap": "sr-portal-profile-src-c86b84a6706b",
+        "uid": "ad3efbde-2137-4cd9-87b2-ea896f5340ae",
+        "resource_version": "423797084",
+        "key": "white_release.py"
+      },
+      "source_sha256": "bee703e0fb52c5b9d64b19fdf6eae26107c66f070e2f1abfeb523b0184b9d9d8",
+      "sha256": "bee703e0fb52c5b9d64b19fdf6eae26107c66f070e2f1abfeb523b0184b9d9d8",
+      "bytes": 566,
+      "sanitized": false
+    },
+    {
+      "path": "reports-public/corpus.json",
+      "source": {
+        "kind": "authored portable export support"
+      },
+      "source_sha256": null,
+      "sha256": "dc7407e1e21a5ef9cf8ecc14556963ba4597308a45dc2b0675591fd64a4efee4",
+      "bytes": 10397,
+      "sanitized": false
+    },
+    {
+      "path": "reports-public/corpus.sha256",
+      "source": {
+        "kind": "authored portable export support"
+      },
+      "source_sha256": null,
+      "sha256": "e6560442b55688393e3104ac233ca6970e95543fde98cd77933e70532748172c",
+      "bytes": 65,
+      "sanitized": false
+    },
+    {
+      "path": "reports-public/index.html",
+      "source": {
+        "kind": "authored portable export support"
+      },
+      "source_sha256": null,
+      "sha256": "0ad07be97a5e3ca293227a1461e4c52a24a1f781a8f87e6c6b1e6f48965c6e90",
+      "bytes": 964,
+      "sanitized": false
+    },
+    {
+      "path": "requirements-dev.txt",
+      "source": {
+        "kind": "authored portable export support"
+      },
+      "source_sha256": null,
+      "sha256": "475992191448d37ffe397dd001f845e0eed353c292e2599f8e36c6f5b95b63cb",
+      "bytes": 13,
+      "sanitized": false
+    },
+    {
+      "path": "routing/litellm.yaml",
+      "source": {
+        "kind": "authored portable export support"
+      },
+      "source_sha256": null,
+      "sha256": "60c3a96619687f06567d8abf339886b04155e19b5ed53203bce5c5e5c9884c67",
+      "bytes": 840,
+      "sanitized": false
+    },
+    {
+      "path": "routing/off/config.yaml",
+      "source": {
+        "namespace": "sr-amx-off",
+        "configmap": "router-config",
+        "key": "config.yaml",
+        "resource_version": "410017953"
+      },
+      "source_sha256": "03ab9cafc46c6fe90b0b1000ad2d2bb7b358e2a3a9eb3e23d20df68af02f367d",
+      "sha256": "524aff867dc1c75e0b4428f62fbad88a181bac009def9e4b20df4ddcae497460",
+      "bytes": 6177,
+      "sanitized": true,
+      "change_note": "Replace operational backend/tracing DNS and environment labels with examples; disable tools and tracing by default; retain model decisions and distinct portable ON/OFF trace service names."
+    },
+    {
+      "path": "routing/off/envoy.yaml",
+      "source": {
+        "namespace": "sr-amx-off",
+        "configmap": "envoy-config",
+        "key": "envoy.yaml",
+        "resource_version": "409819152"
+      },
+      "source_sha256": "029a89384e6fc3cc6f63a1410a12545b7bb90d093dbbe56833ad9b5bbc912a69",
+      "sha256": "a803a417c47d450d7eb17d84d6bcc7a5d3c0424c6eca1dc3ad39e0649442bfdd",
+      "bytes": 6726,
+      "sanitized": true,
+      "change_note": "Replace operational upstream DNS/host rewrites with chart-compatible example service; extproc and admin use loopback; preserve distinct model header-to-cluster routing."
+    },
+    {
+      "path": "routing/on/config.yaml",
+      "source": {
+        "namespace": "vllm-semantic-router-system",
+        "configmap": "semantic-router-config",
+        "key": "config.yaml",
+        "resource_version": "410015903"
+      },
+      "source_sha256": "82d4cc508bf820953f40f65198f33fc8d2ed7b14edfa30a280b9c89075046d4a",
+      "sha256": "2c0945bb621ec273aefb7e9f87901ca16dbab1746282dd9be0332e4d4a80ddf1",
+      "bytes": 6176,
+      "sanitized": true,
+      "change_note": "Replace operational backend/tracing DNS and environment labels with examples; disable tools and tracing by default; retain model decisions and distinct portable ON/OFF trace service names."
+    },
+    {
+      "path": "routing/on/envoy.yaml",
+      "source": {
+        "namespace": "vllm-semantic-router-system",
+        "configmap": "envoy-config",
+        "key": "envoy.yaml",
+        "resource_version": "409816001"
+      },
+      "source_sha256": "789ac7c6951a4a9746bacc14e4f86bfe3efbaa7809baabac6d07d47cb287b439",
+      "sha256": "1307a3bffc0c0f110836fe1469fd186468ee4558848acaff4079e8a1d8927967",
+      "bytes": 6682,
+      "sanitized": true,
+      "change_note": "Replace operational upstream DNS/host rewrites with chart-compatible example service; extproc and admin use loopback; preserve distinct model header-to-cluster routing."
+    },
+    {
+      "path": "routing/tools_db.json",
+      "source": {
+        "kind": "authored portable export support"
+      },
+      "source_sha256": null,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "bytes": 2,
+      "sanitized": false
+    },
+    {
+      "path": "tests/test_batch.py",
+      "source": {
+        "relative_path": "portal/amx-batch-20261014/test_batch.py"
+      },
+      "source_sha256": "35d9bf8551ac1fd94656faac3be107f00be6f058c49c1a21bf78d0a08ead2438",
+      "sha256": "35d9bf8551ac1fd94656faac3be107f00be6f058c49c1a21bf78d0a08ead2438",
+      "bytes": 11726,
+      "sanitized": false
+    },
+    {
+      "path": "tests/test_c15.py",
+      "source": {
+        "relative_path": "portal/amx-c15-20261015/test_c15.py"
+      },
+      "source_sha256": "5962ab6f4a013414d6314375759711e03ad95ce190e3d221a50e6da78982253a",
+      "sha256": "5962ab6f4a013414d6314375759711e03ad95ce190e3d221a50e6da78982253a",
+      "bytes": 2753,
+      "sanitized": false
+    },
+    {
+      "path": "tests/test_compare.py",
+      "source": {
+        "relative_path": "portal/amx-compare-20261014/test_compare.py"
+      },
+      "source_sha256": "df95948b9e35de51955db6690bbec59d3f7d3f6349eaa58bd41b6ec2176f7d16",
+      "sha256": "43bf2d208e914a7643cf6343a32c84e3f77a7f6009fe845284666f9c8a06e4ed",
+      "bytes": 7972,
+      "sanitized": true,
+      "change_note": "Update package-only trace fixtures to portable ON/OFF identities; test cross-mode rejection and explicit service-name override; original source tests untouched."
+    },
+    {
+      "path": "tests/test_english.py",
+      "source": {
+        "relative_path": "portal/amx-english-20261015/test_english.py"
+      },
+      "source_sha256": "6ac0bf4e363b712c1f5fcd717f49f4cb482a431f6c61b773157aa4a31866bf27",
+      "sha256": "6ac0bf4e363b712c1f5fcd717f49f4cb482a431f6c61b773157aa4a31866bf27",
+      "bytes": 3725,
+      "sanitized": false
+    },
+    {
+      "path": "tests/test_parallel.py",
+      "source": {
+        "relative_path": "portal/amx-parallel-20261015/test_parallel.py"
+      },
+      "source_sha256": "f701874fa217ca40de3ac5213dd1a5bd617b5b27ed63ca4d9bfc98ca835d560e",
+      "sha256": "f701874fa217ca40de3ac5213dd1a5bd617b5b27ed63ca4d9bfc98ca835d560e",
+      "bytes": 7193,
+      "sanitized": false
+    },
+    {
+      "path": "tests/test_portable.py",
+      "source": {
+        "kind": "authored portable export support"
+      },
+      "source_sha256": null,
+      "sha256": "f9f83af30d4b436ca23b3ed61cea246efe2b027195cfc3a080a10eb165fed299",
+      "bytes": 6482,
+      "sanitized": false
+    },
+    {
+      "path": "tests/test_race.py",
+      "source": {
+        "relative_path": "portal/amx-race-20261015/test_race.py"
+      },
+      "source_sha256": "73595972d61085798046b7b128949d1443ad9e4a14bb24eb7e978795da9702e2",
+      "sha256": "73595972d61085798046b7b128949d1443ad9e4a14bb24eb7e978795da9702e2",
+      "bytes": 9775,
+      "sanitized": false
+    },
+    {
+      "path": "tools/audit_sources.py",
+      "source": {
+        "kind": "authored portable export support"
+      },
+      "source_sha256": null,
+      "sha256": "e0d25cde6696346e48f292ae915b3304c2332b21d00c16b6b6e5fb58c336dde6",
+      "bytes": 2838,
+      "sanitized": false
+    },
+    {
+      "path": "tools/generate_demo_corpus.py",
+      "source": {
+        "kind": "authored portable export support"
+      },
+      "source_sha256": null,
+      "sha256": "e6a3a5880094bf67b32d649993e72fce310ff4cf6fb119f61396cb83c6ba3786",
+      "bytes": 1469,
+      "sanitized": false
+    },
+    {
+      "path": "tools/render_values.py",
+      "source": {
+        "kind": "authored portable export support"
+      },
+      "source_sha256": null,
+      "sha256": "6d241ddeab0ff475caa212e9b47b8e7ab785618ee12a5f16ee0c578ecf05429c",
+      "bytes": 2177,
+      "sanitized": false
+    },
+    {
+      "path": "tools/update_manifest.py",
+      "source": {
+        "kind": "authored portable export support"
+      },
+      "source_sha256": null,
+      "sha256": "e80dae86d21abf8190d4f50362052eeea8480ce426af112455a0e43045566f4b",
+      "bytes": 5806,
+      "sanitized": false
+    },
+    {
+      "path": "tools/validate.py",
+      "source": {
+        "kind": "authored portable export support"
+      },
+      "source_sha256": null,
+      "sha256": "65cca5cbf2525814b04365ebc982121f44b5fad448aa24d1df78d5e959bb0966",
+      "bytes": 2633,
+      "sanitized": false
+    }
+  ],
+  "package_policy": {
+    "manifest_self_hash": "excluded to avoid recursive hashes",
+    "max_total_bytes": 5000000,
+    "source_scope": [
+      "live Portal application keys plus required JSON dependencies",
+      "native OpenVINO overlay and four modified Go bridge files",
+      "ON/OFF routing application config keys",
+      "portable own Helm chart",
+      "read-only observability source and offline tests"
+    ],
+    "exclusions": [
+      "Secrets and credential values",
+      "full Kubernetes objects and annotations",
+      "historical reports, raw prompts, private baselines and traces",
+      "models, archives, native binaries, upstream .git/full source tree",
+      "production provisioning or one-shot mutation scripts",
+      "CSE/Pega and optional flow explorer"
+    ],
+    "artifact_type": "sanitized public source bundle; original hashes and provenance retained; local validation is not native build or live integration proof"
+  }
+}

@@ -1,0 +1,10 @@
+.git
+.env*
+**/__pycache__
+.generated
+native
+tests
+observability
+routing
+deploy
+tools

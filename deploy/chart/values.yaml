@@ -1,0 +1,27 @@
+portal:
+  image: sr-routing-portal:reviewed
+  serviceType: ClusterIP
+  nodePort: 32468
+stack:
+  enabled: false
+  # Required when enabling stack; build/review the native image separately.
+  routerImage: ""
+  envoyImage: envoyproxy/envoy:v1.35.0
+  litellmImage: ""
+  existingSecret: sr-backend-credentials
+  modelPVC: ""
+  cpu: "4"
+  memory: 8Gi
+  threads: "4"
+  streams: "2"
+  inferPool: "2"
+  # Empty means no affinity override; set a cpuset only after topology review.
+  cpuSetOn: ""
+  cpuSetOff: ""
+  jaegerTraceURL: http://127.0.0.1:9/api/traces/
+configs:
+  on: ""
+  off: ""
+  envoyOn: ""
+  envoyOff: ""
+  litellm: ""

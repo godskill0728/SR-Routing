@@ -1,0 +1,130 @@
+{{- if .Values.stack.enabled }}
+{{- $router := required "Set stack.routerImage to a reviewed native image" .Values.stack.routerImage }}
+{{- $litellm := required "Set stack.litellmImage to a reviewed LiteLLM image" .Values.stack.litellmImage }}
+{{- $pvc := required "Set stack.modelPVC to a prepared model PVC" .Values.stack.modelPVC }}
+{{- range $mode := list "on" "off" }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ $.Release.Name }}-{{ $mode }}
+data:
+  config.yaml: |
+{{ required "Run tools/render_values.py first" (index $.Values.configs $mode) | indent 4 }}
+  envoy.yaml: |
+{{ required "Envoy config required" (index $.Values.configs (printf "envoy%s" ($mode | title))) | indent 4 }}
+  tools_db.json: "[]"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $.Release.Name }}-{{ $mode }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app: {{ $.Release.Name }}-{{ $mode }}}
+  template:
+    metadata:
+      labels: {app: {{ $.Release.Name }}-{{ $mode }}, amx_mode: {{ $mode | quote }}}
+    spec:
+      automountServiceAccountToken: false
+      containers:
+        - name: router
+          image: {{ $router | quote }}
+          {{- $cpuset := index $.Values.stack (printf "cpuSet%s" ($mode | title)) }}
+          {{- if $cpuset }}
+          command: [/usr/bin/taskset, --cpu-list, {{ $cpuset | quote }}, /bin/bash, /app/entrypoint.sh]
+          {{- end }}
+          env:
+            - {name: SR_AMX_MODE, value: {{ $mode | quote }}}
+            - {name: CONFIG_FILE, value: /app/config/config.yaml}
+            - {name: OPENVINO_EMBEDDING_MODEL_PATH, value: /app/openvino-model/openvino_model.xml}
+            - {name: OPENVINO_EMBEDDING_TOTAL_THREADS, value: {{ $.Values.stack.threads | quote }}}
+            - {name: OPENVINO_EMBEDDING_NUM_STREAMS, value: {{ $.Values.stack.streams | quote }}}
+            - {name: OPENVINO_EMBEDDING_NUM_REQUESTS, value: {{ $.Values.stack.inferPool | quote }}}
+            - {name: OPENVINO_EMBEDDING_INFER_POOL_SIZE, value: {{ $.Values.stack.inferPool | quote }}}
+            - {name: GOMAXPROCS, value: {{ $.Values.stack.threads | quote }}}
+            - name: LITELLM_API_KEY
+              valueFrom:
+                secretKeyRef: {name: {{ $.Values.stack.existingSecret }}, key: PROXY_MASTER_KEY}
+          resources:
+            requests: {cpu: {{ $.Values.stack.cpu | quote }}, memory: {{ $.Values.stack.memory }}}
+            limits: {cpu: {{ $.Values.stack.cpu | quote }}, memory: {{ $.Values.stack.memory }}}
+          ports:
+            - {name: api, containerPort: 8080}
+            - {name: metrics, containerPort: 9190}
+          volumeMounts:
+            - {name: config, mountPath: /app/config, readOnly: true}
+            - {name: models, mountPath: /app/models, subPath: models, readOnly: true}
+            - {name: models, mountPath: /app/openvino-model, subPath: openvino-model, readOnly: true}
+          readinessProbe:
+            httpGet: {path: /health, port: api}
+            initialDelaySeconds: 30
+        - name: envoy
+          image: {{ $.Values.stack.envoyImage | quote }}
+          args: [-c, /etc/envoy/envoy.yaml]
+          ports:
+            - {name: envoy, containerPort: 8899}
+          volumeMounts:
+            - {name: config, mountPath: /etc/envoy, readOnly: true}
+      volumes:
+        - name: config
+          configMap: {name: {{ $.Release.Name }}-{{ $mode }}}
+        - name: models
+          persistentVolumeClaim: {claimName: {{ $pvc }}}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $.Release.Name }}-{{ $mode }}
+spec:
+  selector: {app: {{ $.Release.Name }}-{{ $mode }}}
+  ports:
+    - {name: envoy, port: 8899, targetPort: envoy}
+    - {name: api, port: 8080, targetPort: api}
+    - {name: metrics, port: 9190, targetPort: metrics}
+---
+{{- end }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-litellm
+data:
+  config.yaml: |
+{{ required "LiteLLM config required" .Values.configs.litellm | indent 4 }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-litellm
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app: {{ .Release.Name }}-litellm}
+  template:
+    metadata:
+      labels: {app: {{ .Release.Name }}-litellm}
+    spec:
+      automountServiceAccountToken: false
+      containers:
+        - name: litellm
+          image: {{ $litellm | quote }}
+          args: [--config, /app/config/config.yaml, --port, "4000"]
+          envFrom:
+            - secretRef: {name: {{ .Values.stack.existingSecret }}}
+          ports:
+            - {name: http, containerPort: 4000}
+          volumeMounts:
+            - {name: config, mountPath: /app/config, readOnly: true}
+      volumes:
+        - name: config
+          configMap: {name: {{ .Release.Name }}-litellm}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-litellm
+spec:
+  selector: {app: {{ .Release.Name }}-litellm}
+  ports:
+    - {name: http, port: 4000, targetPort: http}
+{{- end }}

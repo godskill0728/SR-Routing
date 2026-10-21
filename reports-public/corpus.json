@@ -1,0 +1,423 @@
+{
+  "description": "SYNTHETIC DEMO ONLY. Not the deployed benchmark corpus; no accuracy or speed baseline.",
+  "prompts": [
+    {
+      "id": "demo-001",
+      "text": "Define binary search in one sentence."
+    },
+    {
+      "id": "demo-002",
+      "text": "Give a simple example of binary search."
+    },
+    {
+      "id": "demo-003",
+      "text": "Explain two common mistakes involving binary search."
+    },
+    {
+      "id": "demo-004",
+      "text": "Compare two approaches to binary search."
+    },
+    {
+      "id": "demo-005",
+      "text": "Outline a beginner lesson about binary search."
+    },
+    {
+      "id": "demo-006",
+      "text": "Describe how to test binary search."
+    },
+    {
+      "id": "demo-007",
+      "text": "List three limitations of binary search."
+    },
+    {
+      "id": "demo-008",
+      "text": "Give pseudocode demonstrating binary search."
+    },
+    {
+      "id": "demo-009",
+      "text": "Explain a performance tradeoff involving binary search."
+    },
+    {
+      "id": "demo-010",
+      "text": "Design a small exercise about binary search."
+    },
+    {
+      "id": "demo-011",
+      "text": "Define HTTP caching in one sentence."
+    },
+    {
+      "id": "demo-012",
+      "text": "Give a simple example of HTTP caching."
+    },
+    {
+      "id": "demo-013",
+      "text": "Explain two common mistakes involving HTTP caching."
+    },
+    {
+      "id": "demo-014",
+      "text": "Compare two approaches to HTTP caching."
+    },
+    {
+      "id": "demo-015",
+      "text": "Outline a beginner lesson about HTTP caching."
+    },
+    {
+      "id": "demo-016",
+      "text": "Describe how to test HTTP caching."
+    },
+    {
+      "id": "demo-017",
+      "text": "List three limitations of HTTP caching."
+    },
+    {
+      "id": "demo-018",
+      "text": "Give pseudocode demonstrating HTTP caching."
+    },
+    {
+      "id": "demo-019",
+      "text": "Explain a performance tradeoff involving HTTP caching."
+    },
+    {
+      "id": "demo-020",
+      "text": "Design a small exercise about HTTP caching."
+    },
+    {
+      "id": "demo-021",
+      "text": "Define unit tests in one sentence."
+    },
+    {
+      "id": "demo-022",
+      "text": "Give a simple example of unit tests."
+    },
+    {
+      "id": "demo-023",
+      "text": "Explain two common mistakes involving unit tests."
+    },
+    {
+      "id": "demo-024",
+      "text": "Compare two approaches to unit tests."
+    },
+    {
+      "id": "demo-025",
+      "text": "Outline a beginner lesson about unit tests."
+    },
+    {
+      "id": "demo-026",
+      "text": "Describe how to test unit tests."
+    },
+    {
+      "id": "demo-027",
+      "text": "List three limitations of unit tests."
+    },
+    {
+      "id": "demo-028",
+      "text": "Give pseudocode demonstrating unit tests."
+    },
+    {
+      "id": "demo-029",
+      "text": "Explain a performance tradeoff involving unit tests."
+    },
+    {
+      "id": "demo-030",
+      "text": "Design a small exercise about unit tests."
+    },
+    {
+      "id": "demo-031",
+      "text": "Define queues in one sentence."
+    },
+    {
+      "id": "demo-032",
+      "text": "Give a simple example of queues."
+    },
+    {
+      "id": "demo-033",
+      "text": "Explain two common mistakes involving queues."
+    },
+    {
+      "id": "demo-034",
+      "text": "Compare two approaches to queues."
+    },
+    {
+      "id": "demo-035",
+      "text": "Outline a beginner lesson about queues."
+    },
+    {
+      "id": "demo-036",
+      "text": "Describe how to test queues."
+    },
+    {
+      "id": "demo-037",
+      "text": "List three limitations of queues."
+    },
+    {
+      "id": "demo-038",
+      "text": "Give pseudocode demonstrating queues."
+    },
+    {
+      "id": "demo-039",
+      "text": "Explain a performance tradeoff involving queues."
+    },
+    {
+      "id": "demo-040",
+      "text": "Design a small exercise about queues."
+    },
+    {
+      "id": "demo-041",
+      "text": "Define sorting in one sentence."
+    },
+    {
+      "id": "demo-042",
+      "text": "Give a simple example of sorting."
+    },
+    {
+      "id": "demo-043",
+      "text": "Explain two common mistakes involving sorting."
+    },
+    {
+      "id": "demo-044",
+      "text": "Compare two approaches to sorting."
+    },
+    {
+      "id": "demo-045",
+      "text": "Outline a beginner lesson about sorting."
+    },
+    {
+      "id": "demo-046",
+      "text": "Describe how to test sorting."
+    },
+    {
+      "id": "demo-047",
+      "text": "List three limitations of sorting."
+    },
+    {
+      "id": "demo-048",
+      "text": "Give pseudocode demonstrating sorting."
+    },
+    {
+      "id": "demo-049",
+      "text": "Explain a performance tradeoff involving sorting."
+    },
+    {
+      "id": "demo-050",
+      "text": "Design a small exercise about sorting."
+    },
+    {
+      "id": "demo-051",
+      "text": "Define database indexes in one sentence."
+    },
+    {
+      "id": "demo-052",
+      "text": "Give a simple example of database indexes."
+    },
+    {
+      "id": "demo-053",
+      "text": "Explain two common mistakes involving database indexes."
+    },
+    {
+      "id": "demo-054",
+      "text": "Compare two approaches to database indexes."
+    },
+    {
+      "id": "demo-055",
+      "text": "Outline a beginner lesson about database indexes."
+    },
+    {
+      "id": "demo-056",
+      "text": "Describe how to test database indexes."
+    },
+    {
+      "id": "demo-057",
+      "text": "List three limitations of database indexes."
+    },
+    {
+      "id": "demo-058",
+      "text": "Give pseudocode demonstrating database indexes."
+    },
+    {
+      "id": "demo-059",
+      "text": "Explain a performance tradeoff involving database indexes."
+    },
+    {
+      "id": "demo-060",
+      "text": "Design a small exercise about database indexes."
+    },
+    {
+      "id": "demo-061",
+      "text": "Define Unicode in one sentence."
+    },
+    {
+      "id": "demo-062",
+      "text": "Give a simple example of Unicode."
+    },
+    {
+      "id": "demo-063",
+      "text": "Explain two common mistakes involving Unicode."
+    },
+    {
+      "id": "demo-064",
+      "text": "Compare two approaches to Unicode."
+    },
+    {
+      "id": "demo-065",
+      "text": "Outline a beginner lesson about Unicode."
+    },
+    {
+      "id": "demo-066",
+      "text": "Describe how to test Unicode."
+    },
+    {
+      "id": "demo-067",
+      "text": "List three limitations of Unicode."
+    },
+    {
+      "id": "demo-068",
+      "text": "Give pseudocode demonstrating Unicode."
+    },
+    {
+      "id": "demo-069",
+      "text": "Explain a performance tradeoff involving Unicode."
+    },
+    {
+      "id": "demo-070",
+      "text": "Design a small exercise about Unicode."
+    },
+    {
+      "id": "demo-071",
+      "text": "Define recursion in one sentence."
+    },
+    {
+      "id": "demo-072",
+      "text": "Give a simple example of recursion."
+    },
+    {
+      "id": "demo-073",
+      "text": "Explain two common mistakes involving recursion."
+    },
+    {
+      "id": "demo-074",
+      "text": "Compare two approaches to recursion."
+    },
+    {
+      "id": "demo-075",
+      "text": "Outline a beginner lesson about recursion."
+    },
+    {
+      "id": "demo-076",
+      "text": "Describe how to test recursion."
+    },
+    {
+      "id": "demo-077",
+      "text": "List three limitations of recursion."
+    },
+    {
+      "id": "demo-078",
+      "text": "Give pseudocode demonstrating recursion."
+    },
+    {
+      "id": "demo-079",
+      "text": "Explain a performance tradeoff involving recursion."
+    },
+    {
+      "id": "demo-080",
+      "text": "Design a small exercise about recursion."
+    },
+    {
+      "id": "demo-081",
+      "text": "Define time zones in one sentence."
+    },
+    {
+      "id": "demo-082",
+      "text": "Give a simple example of time zones."
+    },
+    {
+      "id": "demo-083",
+      "text": "Explain two common mistakes involving time zones."
+    },
+    {
+      "id": "demo-084",
+      "text": "Compare two approaches to time zones."
+    },
+    {
+      "id": "demo-085",
+      "text": "Outline a beginner lesson about time zones."
+    },
+    {
+      "id": "demo-086",
+      "text": "Describe how to test time zones."
+    },
+    {
+      "id": "demo-087",
+      "text": "List three limitations of time zones."
+    },
+    {
+      "id": "demo-088",
+      "text": "Give pseudocode demonstrating time zones."
+    },
+    {
+      "id": "demo-089",
+      "text": "Explain a performance tradeoff involving time zones."
+    },
+    {
+      "id": "demo-090",
+      "text": "Design a small exercise about time zones."
+    },
+    {
+      "id": "demo-091",
+      "text": "Define checksums in one sentence."
+    },
+    {
+      "id": "demo-092",
+      "text": "Give a simple example of checksums."
+    },
+    {
+      "id": "demo-093",
+      "text": "Explain two common mistakes involving checksums."
+    },
+    {
+      "id": "demo-094",
+      "text": "Compare two approaches to checksums."
+    },
+    {
+      "id": "demo-095",
+      "text": "Outline a beginner lesson about checksums."
+    },
+    {
+      "id": "demo-096",
+      "text": "Describe how to test checksums."
+    },
+    {
+      "id": "demo-097",
+      "text": "List three limitations of checksums."
+    },
+    {
+      "id": "demo-098",
+      "text": "Give pseudocode demonstrating checksums."
+    },
+    {
+      "id": "demo-099",
+      "text": "Explain a performance tradeoff involving checksums."
+    },
+    {
+      "id": "demo-100",
+      "text": "Design a small exercise about checksums."
+    }
+  ],
+  "warmups": [
+    "Explain the integer 1 in one short sentence.",
+    "Explain the integer 2 in one short sentence.",
+    "Explain the integer 3 in one short sentence.",
+    "Explain the integer 4 in one short sentence.",
+    "Explain the integer 5 in one short sentence.",
+    "Explain the integer 6 in one short sentence.",
+    "Explain the integer 7 in one short sentence.",
+    "Explain the integer 8 in one short sentence.",
+    "Explain the integer 9 in one short sentence.",
+    "Explain the integer 10 in one short sentence.",
+    "Explain the integer 11 in one short sentence.",
+    "Explain the integer 12 in one short sentence.",
+    "Explain the integer 13 in one short sentence.",
+    "Explain the integer 14 in one short sentence.",
+    "Explain the integer 15 in one short sentence.",
+    "Explain the integer 16 in one short sentence."
+  ]
+}

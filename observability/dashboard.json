@@ -1,0 +1,1925 @@
+{
+  "id": null,
+  "uid": "sr-router-operations-v1",
+  "title": "Semantic Router | Operations · ON / OFF",
+  "schemaVersion": 41,
+  "version": 1,
+  "editable": false,
+  "tags": [
+    "semantic-router",
+    "operations",
+    "litellm",
+    "on-off"
+  ],
+  "timezone": "browser",
+  "refresh": "30s",
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "graphTooltip": 1,
+  "panels": [
+    {
+      "id": 1,
+      "title": "SEMANTIC ROUTER / OPERATIONS",
+      "type": "text",
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 24,
+        "h": 5
+      },
+      "description": "",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "example-prometheus"
+      },
+      "interval": "15s",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "decimals": 2,
+          "noValue": "No samples",
+          "color": {
+            "mode": "palette-classic"
+          }
+        },
+        "overrides": []
+      },
+      "targets": [],
+      "options": {
+        "mode": "markdown",
+        "content": "## Route intelligently. Observe each layer separately.\n**Client → SR (ON / OFF) → LiteLLM → vLLM** · Independent live monitoring · 15-second collection\n\nON / OFF identifies the **service configuration**, not per-request AMX kernel execution. Different live traffic is **not a controlled speedup experiment**. Mode filters apply to all SR panels; Model filters apply only to model-labelled panels. Missing series are never replaced with zero."
+      }
+    },
+    {
+      "id": 2,
+      "title": "Router metrics / scrape health",
+      "type": "stat",
+      "gridPos": {
+        "x": 0,
+        "y": 5,
+        "w": 6,
+        "h": 5
+      },
+      "description": "1 = metrics reachable; not inference or backend health.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "example-prometheus"
+      },
+      "interval": "15s",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "decimals": 2,
+          "noValue": "No samples",
+          "color": {
+            "mode": "palette-classic"
+          },
+          "mappings": [
+            {
+              "type": "value",
+              "options": {
+                "0": {
+                  "text": "DOWN",
+                  "color": "red"
+                },
+                "1": {
+                  "text": "UP",
+                  "color": "green"
+                }
+              }
+            }
+          ]
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "up{sr_dashboard=\"router-operations-v1\",amx_mode=~\"$mode\"}",
+          "legendFormat": "AMX {{amx_mode}}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "example-prometheus"
+          },
+          "editorMode": "code",
+          "range": false,
+          "instant": true
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        },
+        "orientation": "horizontal",
+        "colorMode": "value",
+        "graphMode": "none",
+        "textMode": "value_and_name",
+        "displayMode": "gradient",
+        "showUnfilled": true
+      }
+    },
+    {
+      "id": 3,
+      "title": "Selected-model requests / second",
+      "type": "stat",
+      "gridPos": {
+        "x": 6,
+        "y": 5,
+        "w": 6,
+        "h": 5
+      },
+      "description": "Instrumented request paths, not successful answers. A rejected request may not reach a selected model.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "example-prometheus"
+      },
+      "interval": "15s",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "reqps",
+          "decimals": 2,
+          "noValue": "No samples",
+          "color": {
+            "mode": "palette-classic"
+          }
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by (amx_mode) (rate(llm_model_requests_total{sr_dashboard=\"router-operations-v1\",amx_mode=~\"$mode\",model=~\"$model\",model!=\"_init\"}[$__rate_interval]))",
+          "legendFormat": "AMX {{amx_mode}}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "example-prometheus"
+          },
+          "editorMode": "code",
+          "range": false,
+          "instant": true
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        },
+        "orientation": "horizontal",
+        "colorMode": "value",
+        "graphMode": "none",
+        "textMode": "value_and_name",
+        "displayMode": "gradient",
+        "showUnfilled": true
+      }
+    },
+    {
+      "id": 4,
+      "title": "Selected-model requests / time range",
+      "type": "stat",
+      "gridPos": {
+        "x": 12,
+        "y": 5,
+        "w": 6,
+        "h": 5
+      },
+      "description": "Prometheus extrapolated increase; can be fractional. Only covers data since this collector began, not earlier requests.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "example-prometheus"
+      },
+      "interval": "15s",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "decimals": 2,
+          "noValue": "No samples",
+          "color": {
+            "mode": "palette-classic"
+          }
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by (amx_mode) (increase(llm_model_requests_total{sr_dashboard=\"router-operations-v1\",amx_mode=~\"$mode\",model=~\"$model\",model!=\"_init\"}[$__range]))",
+          "legendFormat": "AMX {{amx_mode}}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "example-prometheus"
+          },
+          "editorMode": "code",
+          "range": false,
+          "instant": true
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        },
+        "orientation": "horizontal",
+        "colorMode": "value",
+        "graphMode": "none",
+        "textMode": "value_and_name",
+        "displayMode": "gradient",
+        "showUnfilled": true
+      }
+    },
+    {
+      "id": 5,
+      "title": "Routing P95 / rolling window",
+      "type": "stat",
+      "gridPos": {
+        "x": 18,
+        "y": 5,
+        "w": 6,
+        "h": 5
+      },
+      "description": "Instrumented ext_proc routing only. Idle window = No samples, not zero latency. Histogram estimate; highest finite bucket 10 s.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "example-prometheus"
+      },
+      "interval": "15s",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ms",
+          "decimals": 2,
+          "noValue": "No samples",
+          "color": {
+            "mode": "palette-classic"
+          }
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "1000 * histogram_quantile(0.95, sum by (le, amx_mode) (rate(llm_model_routing_latency_seconds_bucket{sr_dashboard=\"router-operations-v1\",amx_mode=~\"$mode\"}[$__rate_interval])))",
+          "legendFormat": "AMX {{amx_mode}}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "example-prometheus"
+          },
+          "editorMode": "code",
+          "range": false,
+          "instant": true
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        },
+        "orientation": "horizontal",
+        "colorMode": "value",
+        "graphMode": "none",
+        "textMode": "value_and_name",
+        "displayMode": "gradient",
+        "showUnfilled": true
+      }
+    },
+    {
+      "id": 6,
+      "title": "01 / TRAFFIC & MODEL ROUTING",
+      "type": "row",
+      "gridPos": {
+        "x": 0,
+        "y": 10,
+        "w": 24,
+        "h": 1
+      },
+      "description": "",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "example-prometheus"
+      },
+      "interval": "15s",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "decimals": 2,
+          "noValue": "No samples",
+          "color": {
+            "mode": "palette-classic"
+          }
+        },
+        "overrides": []
+      },
+      "targets": [],
+      "collapsed": false
+    },
+    {
+      "id": 7,
+      "title": "Model traffic / instrumented requests",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 0,
+        "y": 11,
+        "w": 12,
+        "h": 8
+      },
+      "description": "",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "example-prometheus"
+      },
+      "interval": "15s",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "reqps",
+          "decimals": 2,
+          "noValue": "No samples",
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 10,
+            "spanNulls": false,
+            "showPoints": "never",
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            }
+          }
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by (amx_mode, model) (rate(llm_model_requests_total{sr_dashboard=\"router-operations-v1\",amx_mode=~\"$mode\",model=~\"$model\",model!=\"_init\"}[$__rate_interval]))",
+          "legendFormat": "{{amx_mode}} · {{model}}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "example-prometheus"
+          },
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        }
+      ],
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 8,
+      "title": "Model requests / selected time range",
+      "type": "bargauge",
+      "gridPos": {
+        "x": 12,
+        "y": 11,
+        "w": 12,
+        "h": 8
+      },
+      "description": "Not successful response counts. No pre-collection history is reconstructed from cumulative counters.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "example-prometheus"
+      },
+      "interval": "15s",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "decimals": 2,
+          "noValue": "No samples",
+          "color": {
+            "mode": "palette-classic"
+          }
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by (amx_mode, model) (increase(llm_model_requests_total{sr_dashboard=\"router-operations-v1\",amx_mode=~\"$mode\",model=~\"$model\",model!=\"_init\"}[$__range]))",
+          "legendFormat": "{{amx_mode}} · {{model}}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "example-prometheus"
+          },
+          "editorMode": "code",
+          "range": false,
+          "instant": true
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        },
+        "orientation": "horizontal",
+        "colorMode": "value",
+        "graphMode": "none",
+        "textMode": "value_and_name",
+        "displayMode": "gradient",
+        "showUnfilled": true
+      }
+    },
+    {
+      "id": 9,
+      "title": "Selected-model counters / since router process start",
+      "type": "bargauge",
+      "gridPos": {
+        "x": 0,
+        "y": 19,
+        "w": 12,
+        "h": 8
+      },
+      "description": "Cumulative process counters at the selected end time; NOT counts within the selected time range. Reset on restart.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "example-prometheus"
+      },
+      "interval": "15s",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "decimals": 2,
+          "noValue": "No samples",
+          "color": {
+            "mode": "palette-classic"
+          }
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by (amx_mode, model) (llm_model_requests_total{sr_dashboard=\"router-operations-v1\",amx_mode=~\"$mode\",model=~\"$model\",model!=\"_init\"})",
+          "legendFormat": "{{amx_mode}} · {{model}}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "example-prometheus"
+          },
+          "editorMode": "code",
+          "range": false,
+          "instant": true
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        },
+        "orientation": "horizontal",
+        "colorMode": "value",
+        "graphMode": "none",
+        "textMode": "value_and_name",
+        "displayMode": "gradient",
+        "showUnfilled": true
+      }
+    },
+    {
+      "id": 10,
+      "title": "Decision matches / multiple matches allowed",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 12,
+        "y": 19,
+        "w": 12,
+        "h": 8
+      },
+      "description": "All matched rules, including default-route. Several rules can match one request. Do not use as request count or exclusive route share.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "example-prometheus"
+      },
+      "interval": "15s",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ops",
+          "decimals": 2,
+          "noValue": "No samples",
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 10,
+            "spanNulls": false,
+            "showPoints": "never",
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            }
+          }
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by (amx_mode, decision_name) (rate(llm_decision_match_total{sr_dashboard=\"router-operations-v1\",amx_mode=~\"$mode\"}[$__rate_interval]))",
+          "legendFormat": "{{amx_mode}} · {{decision_name}}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "example-prometheus"
+          },
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        }
+      ],
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 11,
+      "title": "02 / ROUTER LATENCY — NOT LLM GENERATION",
+      "type": "row",
+      "gridPos": {
+        "x": 0,
+        "y": 27,
+        "w": 24,
+        "h": 1
+      },
+      "description": "",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "example-prometheus"
+      },
+      "interval": "15s",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "decimals": 2,
+          "noValue": "No samples",
+          "color": {
+            "mode": "palette-classic"
+          }
+        },
+        "overrides": []
+      },
+      "targets": [],
+      "collapsed": false
+    },
+    {
+      "id": 12,
+      "title": "Routing / mean & P95",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 0,
+        "y": 28,
+        "w": 12,
+        "h": 8
+      },
+      "description": "Complexity includes embedding + rule scoring, excludes outer gate wait. Routing covers instrumented ext_proc paths, not every API/eval request. Idle = no latency sample.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "example-prometheus"
+      },
+      "interval": "15s",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ms",
+          "decimals": 2,
+          "noValue": "No samples",
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 10,
+            "spanNulls": false,
+            "showPoints": "never",
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            }
+          }
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "1000 * sum by (amx_mode) (rate(llm_model_routing_latency_seconds_sum{sr_dashboard=\"router-operations-v1\",amx_mode=~\"$mode\"}[$__rate_interval])) / sum by (amx_mode) (rate(llm_model_routing_latency_seconds_count{sr_dashboard=\"router-operations-v1\",amx_mode=~\"$mode\"}[$__rate_interval]))",
+          "legendFormat": "{{amx_mode}} · mean",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "example-prometheus"
+          },
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        },
+        {
+          "refId": "B",
+          "expr": "1000 * histogram_quantile(0.95, sum by (le, amx_mode) (rate(llm_model_routing_latency_seconds_bucket{sr_dashboard=\"router-operations-v1\",amx_mode=~\"$mode\"}[$__rate_interval])))",
+          "legendFormat": "{{amx_mode}} · P95",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "example-prometheus"
+          },
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        }
+      ],
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 13,
+      "title": "Complexity / mean & P95",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 12,
+        "y": 28,
+        "w": 12,
+        "h": 8
+      },
+      "description": "Complexity includes embedding + rule scoring, excludes outer gate wait. Routing covers instrumented ext_proc paths, not every API/eval request. Idle = no latency sample.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "example-prometheus"
+      },
+      "interval": "15s",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ms",
+          "decimals": 2,
+          "noValue": "No samples",
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 10,
+            "spanNulls": false,
+            "showPoints": "never",
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            }
+          }
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "1000 * sum by (amx_mode) (rate(llm_signal_extraction_latency_seconds_sum{sr_dashboard=\"router-operations-v1\",amx_mode=~\"$mode\",signal_type=\"complexity\"}[$__rate_interval])) / sum by (amx_mode) (rate(llm_signal_extraction_latency_seconds_count{sr_dashboard=\"router-operations-v1\",amx_mode=~\"$mode\",signal_type=\"complexity\"}[$__rate_interval]))",
+          "legendFormat": "{{amx_mode}} · mean",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "example-prometheus"
+          },
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        },
+        {
+          "refId": "B",
+          "expr": "1000 * histogram_quantile(0.95, sum by (le, amx_mode) (rate(llm_signal_extraction_latency_seconds_bucket{sr_dashboard=\"router-operations-v1\",amx_mode=~\"$mode\",signal_type=\"complexity\"}[$__rate_interval])))",
+          "legendFormat": "{{amx_mode}} · P95",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "example-prometheus"
+          },
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        }
+      ],
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 14,
+      "title": "Routing / P50 · P95 · P99",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 0,
+        "y": 36,
+        "w": 12,
+        "h": 8
+      },
+      "description": "Bucket-interpolated estimates, not exact percentiles. Highest finite bucket is 10 s; overflow can cap estimates. Do not subtract percentiles.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "example-prometheus"
+      },
+      "interval": "15s",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ms",
+          "decimals": 2,
+          "noValue": "No samples",
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 10,
+            "spanNulls": false,
+            "showPoints": "never",
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            }
+          }
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "1000 * histogram_quantile(0.5, sum by (le, amx_mode) (rate(llm_model_routing_latency_seconds_bucket{sr_dashboard=\"router-operations-v1\",amx_mode=~\"$mode\"}[$__rate_interval])))",
+          "legendFormat": "{{amx_mode}} · P50",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "example-prometheus"
+          },
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        },
+        {
+          "refId": "B",
+          "expr": "1000 * histogram_quantile(0.95, sum by (le, amx_mode) (rate(llm_model_routing_latency_seconds_bucket{sr_dashboard=\"router-operations-v1\",amx_mode=~\"$mode\"}[$__rate_interval])))",
+          "legendFormat": "{{amx_mode}} · P95",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "example-prometheus"
+          },
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        },
+        {
+          "refId": "C",
+          "expr": "1000 * histogram_quantile(0.99, sum by (le, amx_mode) (rate(llm_model_routing_latency_seconds_bucket{sr_dashboard=\"router-operations-v1\",amx_mode=~\"$mode\"}[$__rate_interval])))",
+          "legendFormat": "{{amx_mode}} · P99",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "example-prometheus"
+          },
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        }
+      ],
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 15,
+      "title": "Decision evaluation / mean",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 12,
+        "y": 36,
+        "w": 12,
+        "h": 8
+      },
+      "description": "Rule evaluation only. Distinct from complexity extraction and full routing; not a backend latency.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "example-prometheus"
+      },
+      "interval": "15s",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ms",
+          "decimals": 2,
+          "noValue": "No samples",
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 10,
+            "spanNulls": false,
+            "showPoints": "never",
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            }
+          }
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "1000 * sum by (amx_mode) (rate(llm_decision_evaluation_latency_seconds_sum{sr_dashboard=\"router-operations-v1\",amx_mode=~\"$mode\"}[$__rate_interval])) / sum by (amx_mode) (rate(llm_decision_evaluation_latency_seconds_count{sr_dashboard=\"router-operations-v1\",amx_mode=~\"$mode\"}[$__rate_interval]))",
+          "legendFormat": "{{amx_mode}} · mean",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "example-prometheus"
+          },
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        }
+      ],
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 16,
+      "title": "03 / SR-OBSERVED RESPONSES & ERRORS",
+      "type": "row",
+      "gridPos": {
+        "x": 0,
+        "y": 44,
+        "w": 24,
+        "h": 1
+      },
+      "description": "",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "example-prometheus"
+      },
+      "interval": "15s",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "decimals": 2,
+          "noValue": "No samples",
+          "color": {
+            "mode": "palette-classic"
+          }
+        },
+        "overrides": []
+      },
+      "targets": [],
+      "collapsed": false
+    },
+    {
+      "id": 17,
+      "title": "Measurement boundary / read before comparing",
+      "type": "text",
+      "gridPos": {
+        "x": 0,
+        "y": 45,
+        "w": 24,
+        "h": 5
+      },
+      "description": "",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "example-prometheus"
+      },
+      "interval": "15s",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "decimals": 2,
+          "noValue": "No samples",
+          "color": {
+            "mode": "palette-classic"
+          }
+        },
+        "overrides": []
+      },
+      "targets": [],
+      "options": {
+        "mode": "markdown",
+        "content": "**SR response duration ≠ LiteLLM / Langfuse LLM observation duration.** SR timers use router request context and can include routing, network, queueing and upstream handling; recorded responses may include error bodies. Streaming TTFT records the first body chunk (possibly role-only); non-streaming uses response headers. Neither is guaranteed to be the first visible text token.\n\n**Errors are recorded events, not a reliable success-rate denominator.** Unseen label combinations remain absent. Langfuse observation duration requires the actual LiteLLM trace; this dashboard does not invent trace, cost, or cache-hit data."
+      }
+    },
+    {
+      "id": 18,
+      "title": "SR-observed response duration / mean",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 0,
+        "y": 50,
+        "w": 12,
+        "h": 8
+      },
+      "description": "Not Langfuse generation time. Native SR instrumentation can record error responses; zero-traffic windows have no latency.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "example-prometheus"
+      },
+      "interval": "15s",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ms",
+          "decimals": 2,
+          "noValue": "No samples",
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 10,
+            "spanNulls": false,
+            "showPoints": "never",
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            }
+          }
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "1000 * sum by (amx_mode, model) (rate(llm_model_completion_latency_seconds_sum{sr_dashboard=\"router-operations-v1\",amx_mode=~\"$mode\",model=~\"$model\",model!=\"_init\"}[$__rate_interval])) / sum by (amx_mode, model) (rate(llm_model_completion_latency_seconds_count{sr_dashboard=\"router-operations-v1\",amx_mode=~\"$mode\",model=~\"$model\",model!=\"_init\"}[$__rate_interval]))",
+          "legendFormat": "{{amx_mode}} · {{model}}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "example-prometheus"
+          },
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        }
+      ],
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 19,
+      "title": "SR-observed first chunk / headers / mean",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 12,
+        "y": 50,
+        "w": 12,
+        "h": 8
+      },
+      "description": "Not Langfuse generation time. Native SR instrumentation can record error responses; zero-traffic windows have no latency.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "example-prometheus"
+      },
+      "interval": "15s",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ms",
+          "decimals": 2,
+          "noValue": "No samples",
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 10,
+            "spanNulls": false,
+            "showPoints": "never",
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            }
+          }
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "1000 * sum by (amx_mode, model) (rate(llm_model_ttft_seconds_sum{sr_dashboard=\"router-operations-v1\",amx_mode=~\"$mode\",model=~\"$model\",model!=\"_init\"}[$__rate_interval])) / sum by (amx_mode, model) (rate(llm_model_ttft_seconds_count{sr_dashboard=\"router-operations-v1\",amx_mode=~\"$mode\",model=~\"$model\",model!=\"_init\"}[$__rate_interval]))",
+          "legendFormat": "{{amx_mode}} · {{model}}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "example-prometheus"
+          },
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        }
+      ],
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 20,
+      "title": "Recorded error events / second",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 0,
+        "y": 58,
+        "w": 12,
+        "h": 8
+      },
+      "description": "Native errors only, not complete HTTP status accounting. OFF may have no error series until its first error; missing is not proof of zero errors.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "example-prometheus"
+      },
+      "interval": "15s",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ops",
+          "decimals": 2,
+          "noValue": "No samples",
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 10,
+            "spanNulls": false,
+            "showPoints": "never",
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            }
+          }
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by (amx_mode, model, reason) (rate(llm_request_errors_total{sr_dashboard=\"router-operations-v1\",amx_mode=~\"$mode\",model=~\"$model\",model!=\"_init\"}[$__rate_interval]))",
+          "legendFormat": "{{amx_mode}} · {{model}} · {{reason}}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "example-prometheus"
+          },
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        }
+      ],
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 21,
+      "title": "Recorded error events / time range",
+      "type": "bargauge",
+      "gridPos": {
+        "x": 12,
+        "y": 58,
+        "w": 12,
+        "h": 8
+      },
+      "description": "Extrapolated event increase. No series means unobserved, not certified zero. Errors can occur before model assignment.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "example-prometheus"
+      },
+      "interval": "15s",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "decimals": 2,
+          "noValue": "No samples",
+          "color": {
+            "mode": "palette-classic"
+          }
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by (amx_mode, model, reason) (increase(llm_request_errors_total{sr_dashboard=\"router-operations-v1\",amx_mode=~\"$mode\",model=~\"$model\",model!=\"_init\"}[$__range]))",
+          "legendFormat": "{{amx_mode}} · {{model}} · {{reason}}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "example-prometheus"
+          },
+          "editorMode": "code",
+          "range": false,
+          "instant": true
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        },
+        "orientation": "horizontal",
+        "colorMode": "value",
+        "graphMode": "none",
+        "textMode": "value_and_name",
+        "displayMode": "gradient",
+        "showUnfilled": true
+      }
+    },
+    {
+      "id": 22,
+      "title": "SR-recorded tokens / second",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 0,
+        "y": 66,
+        "w": 12,
+        "h": 8
+      },
+      "description": "Token accounting observed by SR, dependent on upstream usage fields. Not authoritative LiteLLM billing or token-generation throughput.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "example-prometheus"
+      },
+      "interval": "15s",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ops",
+          "decimals": 2,
+          "noValue": "No samples",
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 10,
+            "spanNulls": false,
+            "showPoints": "never",
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            }
+          }
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by (amx_mode, model) (rate(llm_model_prompt_tokens_total{sr_dashboard=\"router-operations-v1\",amx_mode=~\"$mode\",model=~\"$model\",model!=\"_init\"}[$__rate_interval]))",
+          "legendFormat": "{{amx_mode}} · {{model}} · prompt",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "example-prometheus"
+          },
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        },
+        {
+          "refId": "B",
+          "expr": "sum by (amx_mode, model) (rate(llm_model_completion_tokens_total{sr_dashboard=\"router-operations-v1\",amx_mode=~\"$mode\",model=~\"$model\",model!=\"_init\"}[$__rate_interval]))",
+          "legendFormat": "{{amx_mode}} · {{model}} · completion",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "example-prometheus"
+          },
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        }
+      ],
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 23,
+      "title": "Response observations above 10 s / second",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 12,
+        "y": 66,
+        "w": 12,
+        "h": 8
+      },
+      "description": "Observations beyond the highest finite native histogram bucket. Completion quantiles would saturate here; use means and actual traces instead.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "example-prometheus"
+      },
+      "interval": "15s",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ops",
+          "decimals": 2,
+          "noValue": "No samples",
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 10,
+            "spanNulls": false,
+            "showPoints": "never",
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            }
+          }
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by (amx_mode, model) (rate(llm_model_completion_latency_seconds_count{sr_dashboard=\"router-operations-v1\",amx_mode=~\"$mode\",model=~\"$model\",model!=\"_init\"}[$__rate_interval])) - sum by (amx_mode, model) (rate(llm_model_completion_latency_seconds_bucket{sr_dashboard=\"router-operations-v1\",amx_mode=~\"$mode\",model=~\"$model\",model!=\"_init\",le=\"10\"}[$__rate_interval]))",
+          "legendFormat": "{{amx_mode}} · {{model}}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "example-prometheus"
+          },
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        }
+      ],
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 24,
+      "title": "04 / ROUTER PROCESS RESOURCES",
+      "type": "row",
+      "gridPos": {
+        "x": 0,
+        "y": 74,
+        "w": 24,
+        "h": 1
+      },
+      "description": "",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "example-prometheus"
+      },
+      "interval": "15s",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "decimals": 2,
+          "noValue": "No samples",
+          "color": {
+            "mode": "palette-classic"
+          }
+        },
+        "overrides": []
+      },
+      "targets": [],
+      "collapsed": false
+    },
+    {
+      "id": 25,
+      "title": "Process CPU / cores consumed",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 0,
+        "y": 75,
+        "w": 12,
+        "h": 8
+      },
+      "description": "User + system CPU of router process, including native work. Not node CPU, container quota percent, or AMX utilization.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "example-prometheus"
+      },
+      "interval": "15s",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "cores",
+          "decimals": 2,
+          "noValue": "No samples",
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 10,
+            "spanNulls": false,
+            "showPoints": "never",
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            }
+          }
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by (amx_mode) (rate(process_cpu_seconds_total{sr_dashboard=\"router-operations-v1\",amx_mode=~\"$mode\"}[$__rate_interval]))",
+          "legendFormat": "AMX {{amx_mode}}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "example-prometheus"
+          },
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        }
+      ],
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 26,
+      "title": "Process resident memory / RSS",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 12,
+        "y": 75,
+        "w": 12,
+        "h": 8
+      },
+      "description": "Router process RSS. Not total Pod memory or cgroup working set; excludes sidecars.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "example-prometheus"
+      },
+      "interval": "15s",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "bytes",
+          "decimals": 2,
+          "noValue": "No samples",
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 10,
+            "spanNulls": false,
+            "showPoints": "never",
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            }
+          }
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "process_resident_memory_bytes{sr_dashboard=\"router-operations-v1\",amx_mode=~\"$mode\"}",
+          "legendFormat": "AMX {{amx_mode}}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "example-prometheus"
+          },
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        }
+      ],
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 27,
+      "title": "Go goroutines",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 0,
+        "y": 83,
+        "w": 12,
+        "h": 7
+      },
+      "description": "Go concurrency; not native threads, active requests, or CPU cores.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "example-prometheus"
+      },
+      "interval": "15s",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "decimals": 2,
+          "noValue": "No samples",
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 10,
+            "spanNulls": false,
+            "showPoints": "never",
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            }
+          }
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "go_goroutines{sr_dashboard=\"router-operations-v1\",amx_mode=~\"$mode\"}",
+          "legendFormat": "AMX {{amx_mode}}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "example-prometheus"
+          },
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        }
+      ],
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 28,
+      "title": "Router process uptime",
+      "type": "stat",
+      "gridPos": {
+        "x": 12,
+        "y": 83,
+        "w": 12,
+        "h": 7
+      },
+      "description": "",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "example-prometheus"
+      },
+      "interval": "15s",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "decimals": 2,
+          "noValue": "No samples",
+          "color": {
+            "mode": "palette-classic"
+          }
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "time() - process_start_time_seconds{sr_dashboard=\"router-operations-v1\",amx_mode=~\"$mode\"}",
+          "legendFormat": "AMX {{amx_mode}}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "example-prometheus"
+          },
+          "editorMode": "code",
+          "range": false,
+          "instant": true
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        },
+        "orientation": "horizontal",
+        "colorMode": "value",
+        "graphMode": "none",
+        "textMode": "value_and_name",
+        "displayMode": "gradient",
+        "showUnfilled": true
+      }
+    },
+    {
+      "id": 29,
+      "title": "05 / COLLECTION COVERAGE",
+      "type": "row",
+      "gridPos": {
+        "x": 0,
+        "y": 90,
+        "w": 24,
+        "h": 1
+      },
+      "description": "",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "example-prometheus"
+      },
+      "interval": "15s",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "decimals": 2,
+          "noValue": "No samples",
+          "color": {
+            "mode": "palette-classic"
+          }
+        },
+        "overrides": []
+      },
+      "targets": [],
+      "collapsed": false
+    },
+    {
+      "id": 30,
+      "title": "Legacy GPU metrics targets / NOT current route health",
+      "type": "stat",
+      "gridPos": {
+        "x": 0,
+        "y": 91,
+        "w": 12,
+        "h": 6
+      },
+      "description": "Existing separate collector still used obsolete backend IPs at publication. Down scrape targets do not establish LiteLLM route health. Unchanged by this dashboard.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "example-prometheus"
+      },
+      "interval": "15s",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "decimals": 2,
+          "noValue": "No samples",
+          "color": {
+            "mode": "palette-classic"
+          }
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "up{sr_observability=\"amx\",component=\"vllm-backend\"}",
+          "legendFormat": "{{backend}} · {{instance}}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "example-prometheus"
+          },
+          "editorMode": "code",
+          "range": false,
+          "instant": true
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "values": false
+        },
+        "orientation": "horizontal",
+        "colorMode": "value",
+        "graphMode": "none",
+        "textMode": "value_and_name",
+        "displayMode": "gradient",
+        "showUnfilled": true
+      }
+    },
+    {
+      "id": 31,
+      "title": "Router scrape duration",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 12,
+        "y": 91,
+        "w": 12,
+        "h": 6
+      },
+      "description": "",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "example-prometheus"
+      },
+      "interval": "15s",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "decimals": 2,
+          "noValue": "No samples",
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 10,
+            "spanNulls": false,
+            "showPoints": "never",
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            }
+          }
+        },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "scrape_duration_seconds{sr_dashboard=\"router-operations-v1\",amx_mode=~\"$mode\"}",
+          "legendFormat": "AMX {{amx_mode}}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "example-prometheus"
+          },
+          "editorMode": "code",
+          "range": true,
+          "instant": false
+        }
+      ],
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "lastNotNull",
+            "max"
+          ]
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 32,
+      "title": "Coverage / interpretation",
+      "type": "text",
+      "gridPos": {
+        "x": 0,
+        "y": 97,
+        "w": 24,
+        "h": 7
+      },
+      "description": "",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "example-prometheus"
+      },
+      "interval": "15s",
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "decimals": 2,
+          "noValue": "No samples",
+          "color": {
+            "mode": "palette-classic"
+          }
+        },
+        "overrides": []
+      },
+      "targets": [],
+      "options": {
+        "mode": "markdown",
+        "content": "- **New collection starts at deployment:** rate/increase needs at least two scrapes. No historical ON/OFF backfill. Cumulative counters can already contain requests from before collection.\n- **Idle latency is unknown, not zero:** use a wider time range only if traffic occurred after collection started. No inference or load test was generated to populate charts.\n- **Legacy GPU targets:** existing collector IPs are stale. This release does not change them or diagnose current model connectivity.\n- **Not collected here:** Langfuse observations, authoritative costs, gate wait, GPU queue time on current backends, cache hits (no live cache series observed), per-request AMX kernel execution.\n- **Isolation:** queries select a dedicated collection label to avoid double-counting the old ON-only job. Original SR management UI and AMX benchmark dashboard remain separate."
+      }
+    }
+  ],
+  "annotations": {
+    "list": []
+  },
+  "links": [
+    {
+      "title": "Original AMX benchmark dashboard",
+      "type": "link",
+      "url": "/d/sr-amx-benefit-v1",
+      "targetBlank": true
+    },
+    {
+      "title": "Official SR dashboard reference",
+      "type": "link",
+      "url": "https://github.com/vllm-project/semantic-router/tree/main/dashboard",
+      "targetBlank": true
+    }
+  ],
+  "templating": {
+    "list": [
+      {
+        "name": "mode",
+        "label": "Service AMX mode",
+        "type": "custom",
+        "query": "on,off",
+        "multi": true,
+        "includeAll": true,
+        "allValue": ".*",
+        "current": {
+          "text": "All",
+          "value": "$__all"
+        },
+        "options": [
+          {
+            "text": "on",
+            "value": "on",
+            "selected": false
+          },
+          {
+            "text": "off",
+            "value": "off",
+            "selected": false
+          }
+        ]
+      },
+      {
+        "name": "model",
+        "label": "Model (model panels only)",
+        "type": "query",
+        "datasource": {
+          "type": "prometheus",
+          "uid": "example-prometheus"
+        },
+        "query": {
+          "query": "label_values(llm_model_requests_total{sr_dashboard=\"router-operations-v1\",amx_mode=~\"$mode\"}, model)",
+          "refId": "ModelVariable"
+        },
+        "refresh": 1,
+        "sort": 1,
+        "multi": true,
+        "includeAll": true,
+        "allValue": ".*",
+        "current": {
+          "text": "All",
+          "value": "$__all"
+        },
+        "options": []
+      }
+    ]
+  }
+}

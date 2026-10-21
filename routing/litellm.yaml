@@ -1,0 +1,23 @@
+# Portable equivalent of the deployed three-model routing map.
+# Credentials and endpoint URLs are resolved by LiteLLM from external environment.
+general_settings:
+  master_key: os.environ/PROXY_MASTER_KEY
+litellm_settings:
+  # Production langfuse_otel callback is opt-in; configure its external credentials first.
+  callbacks: []
+model_list:
+  - model_name: Qwen3.8-27B-FP8
+    litellm_params:
+      model: openai/Qwen/Qwen3.8-27B-FP8
+      api_base: os.environ/HARD_API_BASE
+      api_key: os.environ/HARD_API_KEY
+  - model_name: gemma-4-12B
+    litellm_params:
+      model: openai/gemma-4-12b-it
+      api_base: os.environ/MEDIUM_API_BASE
+      api_key: os.environ/MEDIUM_API_KEY
+  - model_name: Qwen3.5-4B
+    litellm_params:
+      model: openai/Qwen3.5-4B
+      api_base: os.environ/EASY_API_BASE
+      api_key: os.environ/EASY_API_KEY

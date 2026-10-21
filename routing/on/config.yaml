@@ -1,0 +1,221 @@
+global:
+  integrations:
+    tools:
+      enabled: false
+      fallback_to_empty: true
+      similarity_threshold: 0.2
+      tools_db_path: config/tools_db.json
+      top_k: 3
+  router:
+    skip_processing:
+      enabled: false
+  services:
+    api:
+      batch_classification:
+        concurrency_threshold: 1
+        max_batch_size: 100
+        max_concurrency: 8
+        metrics:
+          detailed_goroutine_tracking: true
+          duration_buckets:
+            - 0.001
+            - 0.005
+            - 0.01
+            - 0.025
+            - 0.05
+            - 0.1
+            - 0.25
+            - 0.5
+            - 1
+            - 2.5
+            - 5
+            - 10
+            - 30
+          enabled: true
+          high_resolution_timing: false
+          sample_rate: 1
+          size_buckets:
+            - 1
+            - 2
+            - 5
+            - 10
+            - 20
+            - 50
+            - 100
+            - 200
+    observability:
+      metrics:
+        enabled: true
+      tracing:
+        enabled: false
+        exporter:
+          endpoint: jaeger.example.invalid:4317
+          insecure: true
+          type: otlp
+        provider: opentelemetry
+        resource:
+          deployment_environment: example
+          service_name: sr-demo-on
+          service_version: latest
+        sampling:
+          rate: 1
+          type: probabilistic
+    response_api:
+      enabled: false
+      max_responses: 1000
+      store_backend: memory
+      ttl_seconds: 86400
+  stores:
+    memory:
+      embedding_model: mmbert
+    semantic_cache:
+      backend_type: memory
+      embedding_model: mmbert
+      enabled: false
+      eviction_policy: fifo
+      max_entries: 1000
+      similarity_threshold: 0.8
+      ttl_seconds: 3600
+    vector_store:
+      embedding_model: mmbert
+listeners:
+  - address: 0.0.0.0
+    name: grpc-50051
+    port: 50051
+    timeout: 300s
+  - address: 0.0.0.0
+    name: http-8080
+    port: 8080
+    timeout: 300s
+providers:
+  defaults:
+    default_model: gemma-4-12b
+    default_reasoning_effort: high
+    reasoning_families:
+      deepseek:
+        parameter: thinking
+        type: chat_template_kwargs
+      gpt:
+        parameter: reasoning_effort
+        type: reasoning_effort
+      gpt-oss:
+        parameter: reasoning_effort
+        type: reasoning_effort
+      qwen3:
+        parameter: enable_thinking
+        type: chat_template_kwargs
+  models:
+    - backend_refs:
+        - name: litellm
+          endpoint: sr-demo-litellm:4000
+          protocol: http
+          weight: 100
+          api_key_env: LITELLM_API_KEY
+      name: qwen3.5-4b-l4
+      provider_model_id: Qwen3.5-4B
+    - backend_refs:
+        - name: litellm
+          endpoint: sr-demo-litellm:4000
+          protocol: http
+          weight: 100
+          api_key_env: LITELLM_API_KEY
+      name: gemma-4-12b
+      provider_model_id: gemma-4-12B
+    - backend_refs:
+        - name: litellm
+          endpoint: sr-demo-litellm:4000
+          protocol: http
+          weight: 100
+          api_key_env: LITELLM_API_KEY
+      name: qwen3.8-27b
+      provider_model_id: Qwen3.8-27B-FP8
+routing:
+  decisions:
+    - description: Complex reasoning tasks go to Qwen3.8-27B with reasoning enabled.
+      modelRefs:
+        - model: qwen3.8-27b
+          use_reasoning: true
+      name: route-hard
+      priority: 100
+      rules:
+        conditions:
+          - name: task-complexity:hard
+            type: complexity
+        operator: AND
+    - description: Standard tasks go to gemma-4-12B-it.
+      modelRefs:
+        - model: gemma-4-12b
+          use_reasoning: false
+      name: route-medium
+      plugins:
+        - configuration:
+            enabled: true
+            mode: replace
+            system_prompt: "You are a thorough, well-organized assistant. Give a
+              comprehensive answer: start with a one-sentence summary, then
+              expand with clearly structured Markdown using short section
+              headings and bullet-point lists. Include concrete details,
+              relevant context, and brief examples where helpful. Prefer bullet
+              points over long paragraphs, and end with a short takeaway when
+              appropriate."
+          type: system_prompt
+      priority: 90
+      rules:
+        conditions:
+          - name: task-complexity:medium
+            type: complexity
+        operator: AND
+    - description: Simple/short prompts go to the small Qwen3.5-4B on L4.
+      modelRefs:
+        - model: qwen3.5-4b-l4
+          use_reasoning: false
+      name: route-easy
+      priority: 80
+      rules:
+        conditions:
+          - name: task-complexity:easy
+            type: complexity
+        operator: AND
+    - description: Catch-all for anything not matched above.
+      modelRefs:
+        - model: gemma-4-12b
+          use_reasoning: false
+      name: default-route
+      priority: 10
+      rules:
+        conditions: []
+        operator: AND
+  modelCards:
+    - name: qwen3.5-4b-l4
+    - name: gemma-4-12b
+    - name: qwen3.8-27b
+  signals:
+    complexity:
+      - description: "Embedding-similarity complexity band: easy / medium / hard."
+        easy:
+          candidates:
+            - What is the capital of France?
+            - Translate 'good morning' into Spanish.
+            - What time zone is Tokyo in?
+            - Summarize this sentence in five words.
+            - Convert 10 kilometers to miles.
+        hard:
+          candidates:
+            - Prove that the sum of any two odd integers is even, with full
+              justification.
+            - Design a horizontally scalable distributed rate limiter and
+              analyze its failure modes.
+            - Derive the gradient of the cross-entropy loss for a softmax
+              classifier step by step.
+            - Write a thread-safe LRU cache in C++ and explain the concurrency
+              model in detail.
+            - Plan a multi-stage data pipeline with backpressure, retries, and
+              exactly-once semantics.
+        name: task-complexity
+        threshold: 0.1
+    domains:
+      - description: Catch-all domain
+        mmlu_categories:
+          - other
+        name: general
+version: v0.3
